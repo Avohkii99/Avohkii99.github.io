@@ -1,44 +1,117 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Distance Unit Converter</title>
+    <title>Elegant Distance Converter</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .converter {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            appearance: none; 
+            -webkit-appearance: none; 
+            -moz-appearance: none; 
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23333' d='M2 0L2 5L4 2.5Z'/%3E%3C/svg%3E"); 
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
 
-    <h1>Distance Unit Converter</h1>
+    <div class="converter">
+        <h1>Elegant Distance Converter</h1>
 
-    <label for="inputValue">Enter Value:</label>
-    <input type="number" id="inputValue" step="any">
+        <label for="inputValue">Enter Value:</label>
+        <input type="number" id="inputValue" step="any">
 
-    <label for="inputUnit">Input Unit:</label>
-    <select id="inputUnit">
-        <option value="inches">Inches</option>
-        <option value="feet">Feet</option>
-        <option value="yards">Yards</option>
-        <option value="miles">Miles</option>
-        <option value="centimeters">Centimeters</option>
-        <option value="millimeters">Millimeters</option>
-        <option value="meters">Meters</option>
-        <option value="kilometers">Kilometers</option>
-    </select>
+        <label for="inputUnit">Input Unit:</label>
+        <select id="inputUnit">
+            <option value="inches">Inches</option>
+            <option value="feet">Feet</option>
+            <option value="yards">Yards</option>
+            <option value="miles">Miles</option>
+            <option value="centimeters">Centimeters</option>
+            <option value="millimeters">Millimeters</option>
+            <option value="meters">Meters</option>
+            <option value="kilometers">Kilometers</option>
+        </select>
 
-    <label for="outputUnit">Output Unit:</label>
-    <select id="outputUnit">
-        <option value="inches">Inches</option>
-        <option value="feet">Feet</option>
-        <option value="yards">Yards</option>
-        <option value="miles">Miles</option>
-        <option value="centimeters">Centimeters</option>
-        <option value="millimeters">Millimeters</option>
-        <option value="meters">Meters</option>
-        <option value="kilometers">Kilometers</option>
-    </select>
+        <label for="outputUnit">Output Unit:</label>
+        <select id="outputUnit">
+            <option value="inches">Inches</option>
+            <option value="feet">Feet</option>
+            <option value="yards">Yards</option>
+            <option value="miles">Miles</option>
+            <option value="centimeters">Centimeters</option>
+            <option value="millimeters">Millimeters</option>
+            <option value="meters">Meters</option>
+            <option value="kilometers">Kilometers</option>
+        </select>
 
-    <button onclick="convert()">Convert</button>
-
-    <p id="result"></p>
+        <p id="result"></p>
+    </div>
 
     <script>
+        const inputValue = document.getElementById("inputValue");
+        inputValue.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                convert();
+            }
+        });
+
         function convert() {
             const inputValue = parseFloat(document.getElementById("inputValue").value);
             const inputUnit = document.getElementById("inputUnit").value;
