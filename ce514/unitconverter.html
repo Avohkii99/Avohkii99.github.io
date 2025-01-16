@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Distance Unit Converter</title>
+</head>
+<body>
+
+    <h1>Distance Unit Converter</h1>
+
+    <label for="inputValue">Enter Value:</label>
+    <input type="number" id="inputValue" step="any">
+
+    <label for="inputUnit">Input Unit:</label>
+    <select id="inputUnit">
+        <option value="inches">Inches</option>
+        <option value="feet">Feet</option>
+        <option value="yards">Yards</option>
+        <option value="miles">Miles</option>
+        <option value="centimeters">Centimeters</option>
+        <option value="millimeters">Millimeters</option>
+        <option value="meters">Meters</option>
+        <option value="kilometers">Kilometers</option>
+    </select>
+
+    <label for="outputUnit">Output Unit:</label>
+    <select id="outputUnit">
+        <option value="inches">Inches</option>
+        <option value="feet">Feet</option>
+        <option value="yards">Yards</option>
+        <option value="miles">Miles</option>
+        <option value="centimeters">Centimeters</option>
+        <option value="millimeters">Millimeters</option>
+        <option value="meters">Meters</option>
+        <option value="kilometers">Kilometers</option>
+    </select>
+
+    <button onclick="convert()">Convert</button>
+
+    <p id="result"></p>
+
+    <script>
+        function convert() {
+            const inputValue = parseFloat(document.getElementById("inputValue").value);
+            const inputUnit = document.getElementById("inputUnit").value;
+            const outputUnit = document.getElementById("outputUnit").value;
+            let result;
+
+            // Conversion factors (meters as base unit)
+            const conversionFactors = {
+                "inches": 0.0254,
+                "feet": 0.3048,
+                "yards": 0.9144,
+                "miles": 1609.34,
+                "centimeters": 0.01,
+                "millimeters": 0.001,
+                "meters": 1,
+                "kilometers": 1000
+            };
+
+            // Convert input value to meters
+            const inputMeters = inputValue * conversionFactors[inputUnit];
+
+            // Convert meters to output unit
+            result = inputMeters / conversionFactors[outputUnit];
+
+            // Display result
+            document.getElementById("result").innerHTML = 
+                inputValue + " " + inputUnit + " is equal to " + result.toFixed(2) + " " + outputUnit;
+        }
+    </script>
+
+</body>
+</html>
