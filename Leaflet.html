@@ -40,9 +40,13 @@
 			align-items: center;
 		}
 
-		surpriser {
-			animation: surprise 5s infinite
-		}
+		.surprise {
+		        position: absolute; /* Absolute positioning for animation */
+		        top: 0px;
+		        width: 10%;
+		        height: auto;
+		        animation: surprise 5s infinite;
+    		}
 		
 		@keyframes surprise {
   			0%   {top: 0px;}
@@ -86,7 +90,7 @@
 
 </script>	
 
-	<surpriser><img src="ce514/surprise.png" alt="Surprise" style="width: 10%; height: auto; margin-top: 20px;"></surpriser>
+	<img class="surprise" src="ce514/surprise.png" alt="Surprise">
 
 </body>
 </html>
