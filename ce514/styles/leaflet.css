@@ -26,6 +26,15 @@
 			align-items: center;
 		}
 
+		.project {
+			  margin-bottom: 3em;
+			  border-left: 5px solid #333;
+			  padding-left: 1.5em;
+			  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+			  border-radius: 5px; 
+			  padding: 1em; 
+			}
+
 		.surprise {
 		        position: absolute; /* Absolute positioning for animation */
 		        top: 0px;
