@@ -132,8 +132,39 @@
 
   </div>
 
-  <script>
-    // (Your JavaScript code here)
+<script>
+    function calculateVelocity() {
+      const width = parseFloat(document.getElementById('width').value);
+      const depth = parseFloat(document.getElementById('depth').value);
+      const slope = parseFloat(document.getElementById('slope').value);
+      const n = parseFloat(document.getElementById('n').value);
+      const units = document.querySelector('input[name="units"]:checked').value;
+
+      const outputDiv = document.getElementById('output');
+      outputDiv.innerHTML = ""; 
+
+      if (isNaN(width) || isNaN(depth) || isNaN(slope) || isNaN(n)) {
+        outputDiv.innerHTML = "Please enter valid numbers for all inputs.";
+        return;
+      }
+
+      if (width <= 0 || depth <= 0 || slope <= 0 || n <= 0) {
+        outputDiv.innerHTML = "All input values must be positive.";
+        return;
+      }
+
+      // Calculate hydraulic radius (assuming rectangular channel)
+      const hydraulicRadius = (width * depth) / (width + 2 * depth); 
+
+      let velocity;
+      if (units === "si") {
+        velocity = (1 / n) * Math.pow(hydraulicRadius, 2/3) * Math.sqrt(slope);
+        outputDiv.innerHTML = "Computed flow velocity, v, is " + velocity.toFixed(2) + " m/s"; 
+      } else if (units === "english") {
+        velocity = (1.486 / n) * Math.pow(hydraulicRadius, 2/3) * Math.sqrt(slope); 
+        outputDiv.innerHTML = "Computed flow velocity, v, is " + velocity.toFixed(2) + " ft/s";
+      }
+    }
   </script>
 
 </body>
