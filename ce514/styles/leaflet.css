@@ -1,0 +1,50 @@
+		body {
+			background-image: url("ce514/9406219_26666.jpg");
+			background-size: cover;	
+			text-align: center; /* Center the header within its container */
+			align-items: center;
+		}
+		.leaflet-container {
+			max-height: 80%;
+			display: flex;
+      			justify-content: center;
+			align-items: center;
+		}
+
+		h1 {
+			text-align: center;
+			font-family: "brush", cursive;
+			background-color: white;
+			display: inline-block; 
+  			padding: 0.5em 1em; 
+  			border-radius: 10px;
+			font-size: 40px;
+		}
+		
+		.header-container {
+  			text-align: center; /* Center the header within its container */
+			align-items: center;
+		}
+
+		.surprise {
+		        position: absolute; /* Absolute positioning for animation */
+		        top: 0px;
+			left: 50%;
+      			transform: translateX(-50%);
+		        width: 10%;
+		        height: auto;
+		        animation: surprise 5s infinite;
+    		}
+
+		@font-face {
+		        font-family: 'brush';
+		        src: url("ce514/WaterBrush-Regular.ttf");
+		        font-weight: normal;
+		        font-style: normal;
+		    }
+		
+		@keyframes surprise {
+  			0%   {top: 30px;}
+  			15%  {top: 230px;}
+  			100%  {top: 30px;}	
+		}
