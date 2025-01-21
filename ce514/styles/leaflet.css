@@ -1,5 +1,5 @@
 		body {
-			background-image: url("ce514/9406219_26666.jpg");
+			background-image: url("../ce514/9406219_26666.jpg");
 			background-size: cover;	
 			text-align: center; /* Center the header within its container */
 			align-items: center;
@@ -38,7 +38,7 @@
 
 		@font-face {
 		        font-family: 'brush';
-		        src: url("ce514/WaterBrush-Regular.ttf");
+		        src: url("../ce514/WaterBrush-Regular.ttf");
 		        font-weight: normal;
 		        font-style: normal;
 		    }
