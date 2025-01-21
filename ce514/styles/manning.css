@@ -1,0 +1,70 @@
+    body {
+      font-family: 'Montserrat', sans-serif; /* Modern font */
+      background-color: #f0f0f0; /* Off-white background */
+      color: #333; /* Dark gray text */
+      background-image: url("/ce514/9332662.jpg"); 
+      background-size: 100% 100%; 
+      display: flex; /* Use flexbox for vertical centering */
+      justify-content: center; /* Center the container horizontally */
+      align-items: center; /* Center the container vertically */
+      /* height: 100vh;  Set height to 100% of viewport height */
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 30px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background-color: #fff; /* White background */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+      background-image: url('data:image/svg+xml,<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#f0f0f0" /></svg>'); /* Subtle texture */
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+    }
+
+    p {
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"] {
+      width: 91.5%;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+
+    button {
+      padding: 12px 20px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    #output {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
