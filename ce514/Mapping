@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+	<base target="_top">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>CE 514 Projects</title>
 
 <link rel="stylesheet" href="ce514/styles/514.css">
