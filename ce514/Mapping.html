@@ -40,16 +40,16 @@
 		.bindPopup('Home').openPopup();
 
 	const marker2 = L.marker([43.477566552676755, -111.93380722595688]).addTo(map)
-		.bindPopup('Church').openPopup();
+		.bindPopup('Church');
 
 	const marker3 = L.marker([43.476952580795405, -111.9357408873423]).addTo(map)
-		.bindPopup('Elementary School').openPopup();
+		.bindPopup('Elementary School');
 
 	const marker4 = L.marker([43.470144518588384, -111.97770611971362]).addTo(map)
-		.bindPopup('High School').openPopup();
+		.bindPopup('High School');
 
 	const marker5 = L.marker([43.527870847236656, -111.9295179493799]).addTo(map)
-		.bindPopup('Iona Library').openPopup();
+		.bindPopup('Iona Library');
 
 	var polygonPoints = [
     		L.latLng(43.47383436482361, -111.93360831829914), // Point 1
@@ -81,8 +81,6 @@
 			.setContent(`Are you sure you want to click there?`)
 			.openOn(map);
 	}
-
-	const map = L.map('map').setView([43.473956788279345, -111.93393322063366], 15);
 
 	map.on('click', onMapClick);
 
