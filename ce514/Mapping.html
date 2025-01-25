@@ -29,15 +29,37 @@
 <div id="map" style="width: 80%; height: 500px; border-radius: 10px; margin: 0 auto;"></div>
 <script>
 
-	const map = L.map('map').setView([43.4927, -112.0408], 13);
+	const map = L.map('map').setView([43.473956788279345, -111.93393322063366], 15);
 
 	const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		maxZoom: 19,
 		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 	}).addTo(map);
 
-	const marker = L.marker([43.4927, -112.0408]).addTo(map)
-		.bindPopup('Welcome to Idaho Falls!').openPopup();
+	const marker = L.marker([43.473956788279345, -111.93393322063366]).addTo(map)
+		.bindPopup('Home').openPopup();
+
+	const marker = L.marker([43.477566552676755, -111.93380722595688]).addTo(map)
+		.bindPopup('Church').openPopup();
+
+	const marker = L.marker([43.476952580795405, -111.9357408873423]).addTo(map)
+		.bindPopup('Elementary School').openPopup();
+
+	const marker = L.marker([43.470144518588384, -111.97770611971362]).addTo(map)
+		.bindPopup('High School').openPopup();
+
+	const marker = L.marker([43.527870847236656, -111.9295179493799]).addTo(map)
+		.bindPopup('Iona Library').openPopup();
+
+	var polygonPoints = [
+    		L.latLng(43.47383436482361, -111.93360831829914), // Point 1
+    		L.latLng(43.47369032745533, -111.93391409013509), // Point 2
+    		L.latLng(43.47412633140878, -111.93448540067064), // Point 3
+    		L.latLng(43.47426647486864, -111.93412062023478)  // Point 4
+		];
+
+	var polygon = L.polygon(polygonPoints, { color: 'red', fillColor: 'red', fillOpacity: 0.5 })
+    		.addTo(map); 
 
 	function onMapClick(e) {
 		popup
