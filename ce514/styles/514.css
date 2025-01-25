@@ -48,6 +48,20 @@ h2 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.control-panel button {
+  background-color: #333; /* Dark gray background */
+  color: #fff; /* White text */
+  border: none;
+  padding: 10px 20px; 
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.control-panel button:hover {
+  background-color: #555; /* Darker gray on hover */
+}
+
 nav ul {
   list-style: none;
   padding: 0;
