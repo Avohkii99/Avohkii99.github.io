@@ -1,5 +1,3 @@
-<script>
-
 	const map = L.map('map').setView([43.473956788279345, -111.93393322063366], 15);
 
 	const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -54,5 +52,3 @@
 	}
 
 	map.on('click', onMapClick);
-
-</script>
