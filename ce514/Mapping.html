@@ -27,7 +27,13 @@
 
 <div class="container">
 <div id="map" style="width: 80%; height: 500px; border-radius: 10px; margin: 0 auto;"></div>
-
+<div class="control-panel">
+    <label for="location1">Enter Location 1:</label>
+    <input type="text" id="location1" placeholder="City, State">
+    <label for="location2">Enter Location 2:</label>
+    <input type="text" id="location2" placeholder="City, State">
+    <button onclick="calculateDistance()">Calculate Distance</button>
+  </div>
 </div>
 
 <script src="scripts/mapping.js"></script>
