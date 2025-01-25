@@ -64,7 +64,8 @@
 	function calculateDistance() {
 	  const location1Input = document.getElementById('location1').value;
 	  const location2Input = document.getElementById('location2').value;
-	
+	}
+
 	  // Use a geocoding library (e.g., Leaflet Nominatim) to convert location strings to coordinates
 	  // For demonstration purposes, we'll assume coordinates are directly entered
 	  const location1 = { lat: 40.7128, lng: -74.0059 }; // Example coordinates for New York City
