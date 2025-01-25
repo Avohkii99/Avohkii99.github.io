@@ -61,24 +61,43 @@
 	  return radians * 180 / Math.PI;
 	}
 	
+	function haversineDistance(lat1, lon1, lat2, lon2) {
+	  const dLat = degToRad(lat2 - lat1);
+	  const dLon = degToRad(lon2 - lon1);
+	  const a =
+	    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+	    Math.cos(degToRad(lat1)) * Math.cos(degToRad(lat2)) *
+	    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+	  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+	  return earthRadius * c;
+	}
+	
 	function calculateDistance() {
 	  const location1Input = document.getElementById('location1').value;
 	  const location2Input = document.getElementById('location2').value;
 	}
-
-	  // Use a geocoding library (e.g., Leaflet Nominatim) to convert location strings to coordinates
-	  // For demonstration purposes, we'll assume coordinates are directly entered
-	  const location1 = { lat: 40.7128, lng: -74.0059 }; // Example coordinates for New York City
-	  const location2 = { lat: 34.0522, lng: -118.2437 }; // Example coordinates for Los Angeles
+	  // Split the user-entered values into latitude and longitude (assuming comma separation)
+	  const location1Parts = location1Input.split(',');
+	  const location2Parts = location2Input.split(',');
 	
-	  const lat1 = degToRad(location1.lat);
-	  const lon1 = degToRad(location1.lng);
-	  const lat2 = degToRad(location2.lat);
-	  const lon2 = degToRad(location2.lng);
+	  // Check if valid latitude and longitude values are provided
+	  if (location1Parts.length !== 2 || location2Parts.length !== 2) {
+	    alert('Invalid input format. Please enter latitude and longitude separated by a comma (,).');
+	    return;
+	  }
 	
-	  const dlon = lon2 - lon1;
+	  const lat1 = parseFloat(location1Parts[0]);
+	  const lon1 = parseFloat(location1Parts[1]);
+	  const lat2 = parseFloat(location2Parts[0]);
+	  const lon2 = parseFloat(location2Parts[1]);
 	
-	  const a = Math.sin(Math.pow((lat2 - lat1) / 2, 2)) +
-	            Math.
+	  // Ensure valid numeric values for latitude and longitude
+	  if (isNaN(lat1) || isNaN(lon1) || isNaN(lat2) || isNaN(lon2)) {
+	    alert('Invalid input. Please enter valid numbers for latitude and longitude.');
+	    return;
+	  }
+	
+	  // Proceed with distance calculation using the parsed values
+	  const distance = haversineDistance(lat1, lon1, lat2, lon2);
 
 	map.on('click', onMapClick);
