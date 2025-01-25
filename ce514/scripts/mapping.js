@@ -51,4 +51,33 @@
 			.openOn(map);
 	}
 
+	const earthRadius = 6371; // Earth's radius in kilometers
+
+	function degToRad(degrees) {
+	  return degrees * Math.PI / 180;
+	}
+	
+	function radToDeg(radians) {
+	  return radians * 180 / Math.PI;
+	}
+	
+	function calculateDistance() {
+	  const location1Input = document.getElementById('location1').value;
+	  const location2Input = document.getElementById('location2').value;
+	
+	  // Use a geocoding library (e.g., Leaflet Nominatim) to convert location strings to coordinates
+	  // For demonstration purposes, we'll assume coordinates are directly entered
+	  const location1 = { lat: 40.7128, lng: -74.0059 }; // Example coordinates for New York City
+	  const location2 = { lat: 34.0522, lng: -118.2437 }; // Example coordinates for Los Angeles
+	
+	  const lat1 = degToRad(location1.lat);
+	  const lon1 = degToRad(location1.lng);
+	  const lat2 = degToRad(location2.lat);
+	  const lon2 = degToRad(location2.lng);
+	
+	  const dlon = lon2 - lon1;
+	
+	  const a = Math.sin(Math.pow((lat2 - lat1) / 2, 2)) +
+	            Math.
+
 	map.on('click', onMapClick);
