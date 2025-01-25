@@ -54,8 +54,16 @@ nav ul {
   margin: 0;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   border-bottom: 1px solid #ddd;
   margin-bottom: 2em;
+  
+}
+
+nav ul li {
+  flex: 0 0 auto; /* Prevent individual buttons from wrapping */
+  text-align: center;
+  margin: 0 10px;
 }
 
 nav li {
