@@ -29,7 +29,7 @@
 <div id="map" style="width: 80%; height: 500px; border-radius: 10px; margin: 0 auto;"></div>
 <script>
 
-	
+	const map = L.map('map').setView([43.473956788279345, -111.93393322063366], 15);
 
 	const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		maxZoom: 19,
