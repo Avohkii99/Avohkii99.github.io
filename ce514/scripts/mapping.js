@@ -71,7 +71,36 @@
 	  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 	  return earthRadius * c;
 	}
+
+	const calculateDistanceButton = document.getElementById('calculateDistance');
+
+	// Add event listener to the button
+	calculateDistanceButton.addEventListener('click', () => {
+	  try {
+	    const location1Input = document.getElementById('location1').value;
+	    const location2Input = document.getElementById('location2').value;
 	
+	    const location1Parts = location1Input.split(',');
+	    const location2Parts = location2Input.split(',');
+	
+	    if (location1Parts.length !== 2 || location2Parts.length !== 2) {
+	      throw new Error('Invalid input format. Please enter latitude and longitude separated by a comma (,).');
+	    }
+	
+	    const lat1 = parseFloat(location1Parts[0]);
+	    const lon1 = parseFloat(location1Parts[1]);
+	    const lat2 = parseFloat(location2Parts[0]);
+	    const lon2 = parseFloat(location2Parts[1]);
+	
+	    if (isNaN(lat1) || isNaN(lon1) || isNaN(lat2) || isNaN(lon2)) {
+	      throw new Error('Invalid input. Please enter valid numbers for latitude and longitude.');
+	    }
+	
+	    const distance = haversineDistance(lat1, lon1, lat2, lon2);
+	
+	    // Display the calculated distance (e.g., using alert)
+	    alert(`Distance between locations: ${distance.toFixed(2)} km`);
+
 	function calculateDistance() {
 	  const location1Input = document.getElementById('location1').value;
 	  const location2Input = document.getElementById('location2').value;
@@ -97,5 +126,12 @@
 	
 	  // Proceed with distance calculation using the parsed values
 	  const distance = haversineDistance(lat1, lon1, lat2, lon2);
+
+		    // Display the calculated distance (e.g., using alert)
+	    alert(`Distance between locations: ${distance.toFixed(2)} km`);
+	  } catch (error) {
+	    alert(error.message); // Display error message if invalid input is provided
+	  }
+	});
 
 	map.on('click', onMapClick);
