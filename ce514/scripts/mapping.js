@@ -80,10 +80,9 @@
 	  const location1Parts = location1Input.split(',');
 	  const location2Parts = location2Input.split(',');
 	
-	  // Check if valid latitude and longitude values are provided
+	// Check if valid latitude and longitude values are provided
 	  if (location1Parts.length !== 2 || location2Parts.length !== 2) {
-	    alert('Invalid input format. Please enter latitude and longitude separated by a comma (,).');
-	    return;
+	    throw new Error('Invalid input format. Please enter latitude and longitude separated by a comma (,).');
 	  }
 	
 	  const lat1 = parseFloat(location1Parts[0]);
@@ -93,8 +92,7 @@
 	
 	  // Ensure valid numeric values for latitude and longitude
 	  if (isNaN(lat1) || isNaN(lon1) || isNaN(lat2) || isNaN(lon2)) {
-	    alert('Invalid input. Please enter valid numbers for latitude and longitude.');
-	    return;
+	    throw new Error('Invalid input. Please enter valid numbers for latitude and longitude.');
 	  }
 	
 	  // Proceed with distance calculation using the parsed values
