@@ -107,7 +107,46 @@
 	    }
 	
 	    const distance = haversineDistance(lat1, lon1, lat2, lon2);
+
+	  const lat1Rad = degToRad(lat1);
+	  const lon1Rad = degToRad(lon1);
+	  const lat2Rad = degToRad(lat2);
+	  const lon2Rad = degToRad(lon2);
 	
+	  const dLat = lat2Rad - lat1Rad;
+	  const dLon = lon2Rad - lon1Rad;
+	
+	  const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+	            Math.cos(lat1Rad) * Math.cos(lat2Rad) *
+	            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+	  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+	  const distance = earthRadius * c;
+	
+	  // Calculate intermediate points for the great-circle path (example with 10 points)
+	  const numIntermediatePoints = 10;
+	  const intermediatePoints = [];
+	  for (let i = 1; i <= numIntermediatePoints; i++) {
+	    const f = i / (numIntermediatePoints + 1);
+	    const A = Math.sin((1 - f) * c) / Math.sin(c);
+	    const B = Math.sin(f * c) / Math.sin(c);
+	    const x = A * Math.cos(lat1Rad) * Math.cos(lon1Rad) + B * Math.cos(lat2Rad) * Math.cos(lon2Rad);
+	    const y = A * Math.cos(lat1Rad) * Math.sin(lon1Rad) + B * Math.cos(lat2Rad) * Math.sin(lon2Rad);
+	    const z = A * Math.sin(lat1Rad) + B * Math.sin(lat2Rad);
+	    const phi = Math.atan2(z, Math.sqrt(x * x + y * y));
+	    const lambda = Math.atan2(y, x);
+	    intermediatePoints.push({ lat: radToDeg(phi), lng: radToDeg(lambda) });
+	  }
+	
+	  // Create a polyline for the great-circle path
+	  const polyline = L.polyline(intermediatePoints, { color: 'blue' }).addTo(map);
+	
+	  // Add markers for the start and end locations
+	  const startMarker = L.marker([lat1, lon1]).addTo(map);
+	  const endMarker = L.marker([lat2, lon2]).addTo(map);
+	
+	  // Zoom to fit the path and markers
+	  map.fitBounds(polyline.getBounds().extend(startMarker.getLatLng()).extend(endMarker.getLatLng()));
+		  
 	    // Display the calculated distance (e.g., using alert)
 	    alert(`Distance between locations: ${distance.toFixed(2)} km`);
 
