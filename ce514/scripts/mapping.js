@@ -106,7 +106,7 @@
 	      throw new Error('Invalid input. Please enter valid numbers for latitude and longitude.');
 	    }
 	
-	    const distance = haversineDistance(lat1, lon1, lat2, lon2);
+	    /* const distance = haversineDistance(lat1, lon1, lat2, lon2); */
 
 	  const lat1Rad = degToRad(lat1);
 	  const lon1Rad = degToRad(lon1);
