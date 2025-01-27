@@ -126,6 +126,10 @@ function calculateDistance() {
 
   // Display the calculated distance
   alert(`Distance between locations: ${distance.toFixed(2)} km`);
+
+  } catch (error) {
+    alert(error.message);
+  }
 });
 
 // Get a reference to the button element
