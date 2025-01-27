@@ -125,13 +125,14 @@ function calculateDistance() {
     // Zoom to fit the path and markers
     map.fitBounds(polyline.getBounds().extend(startMarker.getLatLng()).extend(endMarker.getLatLng()));
 
-    // Display the calculated distance
-    alert(`Distance between locations: ${distance.toFixed(2)} km`);
-
   } catch (error) {
     alert(error.message);
+    return;
   }
 };
+
+// Display the calculated distance
+alert(`Distance between locations: ${distance.toFixed(2)} km`);
 
 // Get a reference to the button element
 const calculateDistanceButton = document.getElementById('calculateDistance');
