@@ -127,7 +127,6 @@ function calculateDistance() {
 
   } catch (error) {
     alert(error.message);
-    return;
   }
 };
 
