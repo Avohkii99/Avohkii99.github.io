@@ -72,6 +72,16 @@
 	  return earthRadius * c;
 	}
 
+	  // Create a polyline for the great-circle path
+	  const polyline = L.polyline(intermediatePoints, { color: 'blue' }).addTo(map);
+	
+	  // Add markers for the start and end locations
+	  const startMarker = L.marker([lat1, lon1]).addTo(map);
+	  const endMarker = L.marker([lat2, lon2]).addTo(map);
+	
+	  // Zoom to fit the path and markers
+	  map.fitBounds(polyline.getBounds().extend(startMarker.getLatLng()).extend(endMarker.getLatLng()));
+
 	const calculateDistanceButton = document.getElementById('calculateDistance');
 
 	// Add event listener to the button
