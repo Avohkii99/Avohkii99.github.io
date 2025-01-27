@@ -131,7 +131,7 @@ function calculateDistance() {
   } catch (error) {
     alert(error.message);
   }
-});
+};
 
 // Get a reference to the button element
 const calculateDistanceButton = document.getElementById('calculateDistance');
