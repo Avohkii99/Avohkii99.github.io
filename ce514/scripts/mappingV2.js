@@ -103,6 +103,9 @@ function calculateDistance() {
     // Calculate intermediate points for the great-circle path (example with 10 points)
     const numIntermediatePoints = 10;
     const intermediatePoints = [];
+
+    intermediatePoints.push({ lat: lat1, lng: lon1 });
+	  
     for (let i = 1; i <= numIntermediatePoints; i++) {
       const f = i / (numIntermediatePoints + 1);
       const A = Math.sin((1 - f) * c) / Math.sin(c);
@@ -115,6 +118,8 @@ function calculateDistance() {
       intermediatePoints.push({ lat: radToDeg(phi), lng: radToDeg(lambda) });
     }
 
+    intermediatePoints.push({ lat: lat2, lng: lon2 });
+	  
     // Create a polyline for the great-circle path
     const polyline = L.polyline(intermediatePoints, { color: 'blue' }).addTo(map);
 
