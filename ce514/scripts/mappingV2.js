@@ -127,8 +127,8 @@ function calculateDistance() {
     const startMarker = L.marker([lat1, lon1]).addTo(map);
     const endMarker = L.marker([lat2, lon2]).addTo(map);
 
-    // Display the calculated distance
-    alert(`Distance between locations: ${distance.toFixed(2)} km`);
+    // Update the page with the calculated distance
+    document.getElementById('distanceResult').innerText = `Distance between locations: ${distance.toFixed(2)} km`;
 	  
     // Zoom to fit the path and markers
     map.fitBounds(polyline.getBounds().extend(startMarker.getLatLng()).extend(endMarker.getLatLng()));
