@@ -65,6 +65,7 @@ h2 {
 fieldset {
   border: 1px solid #ccc;
   border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
   padding: 10px;
   margin-bottom: 15px;
 }
