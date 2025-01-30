@@ -149,26 +149,22 @@ calculateDistanceButton.addEventListener('click', calculateDistance);
     omnivore.kml(kmlUrl).on('ready', function() {
       const kmlLayer = this; // Store the KML layer for later use
 
+   omnivore.kml(kmlUrl).on('ready', function() {
+      const kmlLayer = this;
+
       kmlLayer.addTo(map);
       map.fitBounds(kmlLayer.getBounds());
 
-      // Style the KML features (outlines)
-  kmlLayer.eachLayer(function(layer) {
-      const polyClasses = [L.Polygon, L.Polyline, L.MultiPolygon, L.MultiPolyline];
-      if (polyClasses.some(cls => layer instanceof cls)) {
-          layer.setStyle({
-              color: 'red',
-              weight: 2,
-              fill: false
-          });
-      } else if (layer instanceof L.Circle) {
-          layer.setStyle({
-              color: 'blue',
-              weight: 2,
-              fill: false
-          });
-      }
-  });
-}).on('error', function(err) {
-  console.error("Error loading KML:", err);
-});
+      // Style ALL KML features with blue fill and outline
+      kmlLayer.eachLayer(function(layer) {
+        layer.setStyle({
+          color: 'blue',      // Outline color
+          weight: 2,         // Outline thickness
+          fill: true,       // Fill the shapes
+          fillColor: 'blue' // Fill color
+        });
+      });
+
+    }).on('error', function(err) {
+      console.error("Error loading KML:", err);
+    });
