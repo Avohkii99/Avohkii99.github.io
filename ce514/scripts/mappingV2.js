@@ -144,8 +144,19 @@ const calculateDistanceButton = document.getElementById('calculateDistance');
 // Add event listener to the button
 calculateDistanceButton.addEventListener('click', calculateDistance); 
 
-    const kmlUrl = '/ce514/Path.kml'; // Replace with your KML file URL
+omnivore.kml(kmlUrl).on('ready', function() {
+  const kmlLayer = this; // Store 'this' (the layer) in a variable
 
-    omnivore.kml(kmlUrl).on('ready', function() {
-	    this.setStyle({color: "blue"});
-    	});
+  kmlLayer.addTo(map); // Add to the map *before* setting style
+
+  kmlLayer.setStyle({ // Now the style will be applied correctly
+    color: "blue",    // Outline color
+    weight: 2,       // Outline thickness (adjust as needed)
+    fill: false     // Do not fill the polygon.
+  });
+
+  map.fitBounds(kmlLayer.getBounds()); // Fit map to KML bounds (after it's loaded)
+
+}).on('error', function(err) {
+  console.error("Error loading KML:", err); // Very important for debugging
+});
