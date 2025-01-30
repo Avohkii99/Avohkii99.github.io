@@ -149,8 +149,3 @@ calculateDistanceButton.addEventListener('click', calculateDistance);
     omnivore.kml(kmlUrl).on('ready', function() {
 	    this.setStyle({color: "blue"});
     	});
-
-
-    }).on('error', function(err) {
-      console.error("Error loading KML:", err);
-    });
