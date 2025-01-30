@@ -149,9 +149,6 @@ calculateDistanceButton.addEventListener('click', calculateDistance);
     omnivore.kml(kmlUrl).on('ready', function() {
       const kmlLayer = this; // Store the KML layer for later use
 
-   omnivore.kml(kmlUrl).on('ready', function() {
-      const kmlLayer = this;
-
       kmlLayer.addTo(map);
       map.fitBounds(kmlLayer.getBounds());
 
