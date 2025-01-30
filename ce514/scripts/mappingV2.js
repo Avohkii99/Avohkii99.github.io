@@ -144,6 +144,8 @@ const calculateDistanceButton = document.getElementById('calculateDistance');
 // Add event listener to the button
 calculateDistanceButton.addEventListener('click', calculateDistance); 
 
+const kmlUrl = '/ce514/Path.kml';
+
 omnivore.kml(kmlUrl).on('ready', function() {
   const kmlLayer = this; // Store 'this' (the layer) in a variable
 
