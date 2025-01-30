@@ -144,7 +144,7 @@ const calculateDistanceButton = document.getElementById('calculateDistance');
 // Add event listener to the button
 calculateDistanceButton.addEventListener('click', calculateDistance); 
 
-    const kmlUrl = '/ce514/Barcelona.kml'; // Replace with your KML file URL
+    const kmlUrl = '/ce514/Path.kml'; // Replace with your KML file URL
 
     omnivore.kml(kmlUrl).on('ready', function() {
 	    this.setStyle({color: "blue"});
