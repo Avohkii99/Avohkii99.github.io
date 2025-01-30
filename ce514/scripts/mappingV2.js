@@ -171,5 +171,3 @@ function addKMLToMap(kmlFileUrl) {
 	      alert("Error loading KML file.");
 	    });
 	}
-
-const kmlUrl = '/ce514/Barcelona.kml';
