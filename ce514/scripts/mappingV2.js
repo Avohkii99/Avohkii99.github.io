@@ -152,22 +152,3 @@ calculateDistanceButton.addEventListener('click', calculateDistance);
     }).on('error', function(err){
         console.error("Error loading KML:", err);
     });
-
-function addKMLToMap(kmlFileUrl) {
-  fetch(kmlFileUrl) // Fetch the KML file (you can use AJAX or fetch API)
-    .then(res => res.text())
-    .then(kmlData => {
-      const parser = new DOMParser();
-      const kml = parser.parseFromString(kmlData, 'text/xml');
-
-      // Create a new kmlLayer from the parsed KML
-      const kmlLayer = new L.KML(kml);
-
-      // Add the KML layer to the map
-      kmlLayer.addTo(map);
-	 })
-	    .catch(error => {
-	      console.error("Error loading KML:", error);
-	      alert("Error loading KML file.");
-	    });
-	}
