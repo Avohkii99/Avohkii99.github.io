@@ -153,22 +153,22 @@ calculateDistanceButton.addEventListener('click', calculateDistance);
       map.fitBounds(kmlLayer.getBounds());
 
       // Style the KML features (outlines)
-      kmlLayer.eachLayer(function(layer) {
-        if (layer instanceof L.Polygon || layer instanceof L.Polyline || layer instanceof L.MultiPolygon || layer instanceof L.MultiPolyline) {
+  kmlLayer.eachLayer(function(layer) {
+      const polyClasses = [L.Polygon, L.Polyline, L.MultiPolygon, L.MultiPolyline];
+      if (polyClasses.some(cls => layer instanceof cls)) {
           layer.setStyle({
-            color: 'red',       // Outline color
-            weight: 2,          // Outline thickness
-            fill: false        // Don't fill the shapes
+              color: 'red',
+              weight: 2,
+              fill: false
           });
-        } else if (layer instanceof L.Circle) { // Style for circles
-            layer.setStyle({
-                color: 'blue',
-                weight: 2,
-                fill: false
-            });
-        }
-      });
-
-    }).on('error', function(err) {
-      console.error("Error loading KML:", err);
-    });
+      } else if (layer instanceof L.Circle) {
+          layer.setStyle({
+              color: 'blue',
+              weight: 2,
+              fill: false
+          });
+      }
+  });
+}).on('error', function(err) {
+  console.error("Error loading KML:", err);
+});
