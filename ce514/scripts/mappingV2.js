@@ -144,6 +144,8 @@ const calculateDistanceButton = document.getElementById('calculateDistance');
 // Add event listener to the button
 calculateDistanceButton.addEventListener('click', calculateDistance); 
 
+omnivore.kml('/ce514/Barcelona.kml').addTo(map)
+
 function addKMLToMap(kmlFileUrl) {
   fetch(kmlFileUrl) // Fetch the KML file (you can use AJAX or fetch API)
     .then(res => res.text())
