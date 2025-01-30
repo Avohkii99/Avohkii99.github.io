@@ -144,9 +144,14 @@ const calculateDistanceButton = document.getElementById('calculateDistance');
 // Add event listener to the button
 calculateDistanceButton.addEventListener('click', calculateDistance); 
 
-omnivore.kml('/ce514/Barcelona.kml').on('ready', function() {
-            this.setStyle({color: "blue"});
-        });
+    const kmlUrl = '/ce514/Barcelona.kml'; // Replace with your KML file URL
+
+    omnivore.kml(kmlUrl).on('ready', function() {
+      this.addTo(map); // Add the KML layer to the map
+      map.fitBounds(this.getBounds()); // Adjust map view to fit the KML
+    }).on('error', function(err){
+        console.error("Error loading KML:", err);
+    });
 
 function addKMLToMap(kmlFileUrl) {
   fetch(kmlFileUrl) // Fetch the KML file (you can use AJAX or fetch API)
