@@ -147,20 +147,9 @@ calculateDistanceButton.addEventListener('click', calculateDistance);
     const kmlUrl = '/ce514/Barcelona.kml'; // Replace with your KML file URL
 
     omnivore.kml(kmlUrl).on('ready', function() {
-      const kmlLayer = this; // Store the KML layer for later use
+	    this.setStyle({color: "blue"});
+    	});
 
-      kmlLayer.addTo(map);
-      map.fitBounds(kmlLayer.getBounds());
-
-      // Style ALL KML features with blue fill and outline
-      kmlLayer.eachLayer(function(layer) {
-        layer.setStyle({
-          color: 'blue',      // Outline color
-          weight: 2,         // Outline thickness
-          fill: true,       // Fill the shapes
-          fillColor: 'blue' // Fill color
-        });
-      });
 
     }).on('error', function(err) {
       console.error("Error loading KML:", err);
