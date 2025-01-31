@@ -58,13 +58,13 @@
 		  kmlLayer.addTo(map); // Add to the map *before* setting style
 		
 		  kmlLayer.setStyle({ // Now the style will be applied correctly
-		    color: "blue",    // Outline color
-		    weight: 2,       // Outline thickness (adjust as needed)
-		    fill: false     // Do not fill the polygon.
+			color: "blue",    // Outline color
+			weight: 2,       // Outline thickness (adjust as needed)
+			fill: false     // Do not fill the polygon.
 		  });
 		
 		  map.fitBounds(kmlLayer.getBounds()); // Fit map to KML bounds (after it's loaded)
-		
+		});
 	</code>
     </div>
 </div>

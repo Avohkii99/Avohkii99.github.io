@@ -17,7 +17,7 @@ header {
   padding: 1em 0;
   border-bottom: 5px solid #555;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  height: 100%;
+  min-height: 100vh; /* Extend header to full viewport height */
 }
 
 h1 {
@@ -97,17 +97,18 @@ nav ul {
   padding: 0;
   margin: 0;
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  justify-content: space-around; /* Distribute items evenly */
+  flex-wrap: wrap; /* Allow items to wrap to the next line */
   border-bottom: 1px solid #ddd;
   margin-bottom: 2em;
-  
+  gap: 40px; /* Add space between lines */
 }
 
 nav ul li {
-  flex: 0 0 auto; /* Prevent individual buttons from wrapping */
+  flex: 1 1 auto; /* Allow items to grow and shrink */
   text-align: center;
   margin: 0 10px;
+  min-width: 100px; /* Ensure minimum width for each item */
 }
 
 nav li {
