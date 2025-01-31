@@ -20,8 +20,15 @@ const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	const marker5 = L.marker([43.527870847236656, -111.9295179493799]).addTo(map)
 		.bindPopup('Iona Library');
 
-  const marker6 = L.marker([43.496811111479424, -111.85024998695548]).addTo(map)
-		.bindPopup('Sledding Hill');
+  const sledIcon = L.icon({
+    iconUrl: '/ce514/Sled.png', // Replace with the path to your custom sled image
+    iconSize: [32, 32], // Adjust the size as needed
+    iconAnchor: [16, 32], // Anchor the icon (center bottom)
+    popupAnchor: [0, -32] // Position the popup above the icon
+  });
+
+  const marker6 = L.marker([43.496811111479424, -111.85024998695548], { icon: sledIcon }).addTo(map)
+    .bindPopup('Sledding Hill');
 
 	var polygonPoints = [
     		L.latLng(43.47383436482361, -111.93360831829914), // Point 1
