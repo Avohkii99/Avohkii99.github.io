@@ -144,21 +144,29 @@ const calculateDistanceButton = document.getElementById('calculateDistance');
 // Add event listener to the button
 calculateDistanceButton.addEventListener('click', calculateDistance); 
 
-const kmlUrl = '/ce514/Path.kml'; // Adjusted relative path
+const kmlUrl1 = '/ce514/Path.kml'; // Adjusted relative path for the first KML
+const kmlUrl2 = '/ce514/Sled.kml'; // Adjusted relative path for the second KML
 
-omnivore.kml(kmlUrl).on('ready', function() {
-  const kmlLayer = this; // Store 'this' (the layer) in a variable
+// Function to load and style KML
+function loadKml(url) {
+  omnivore.kml(url).on('ready', function() {
+    const kmlLayer = this; // Store 'this' (the layer) in a variable
 
-  kmlLayer.addTo(map); // Add to the map *before* setting style
+    kmlLayer.addTo(map); // Add to the map *before* setting style
 
-  kmlLayer.setStyle({ // Now the style will be applied correctly
-    color: "blue",    // Outline color
-    weight: 2,       // Outline thickness (adjust as needed)
-    fill: false     // Do not fill the polygon.
+    kmlLayer.setStyle({ // Now the style will be applied correctly
+      color: "blue",    // Outline color
+      weight: 2,       // Outline thickness (adjust as needed)
+      fill: false     // Do not fill the polygon.
+    });
+
+    map.fitBounds(kmlLayer.getBounds()); // Fit map to KML bounds (after it's loaded)
+
+  }).on('error', function(err) {
+    console.error("Error loading KML:", err); // Very important for debugging
   });
+}
 
-  map.fitBounds(kmlLayer.getBounds()); // Fit map to KML bounds (after it's loaded)
-
-}).on('error', function(err) {
-  console.error("Error loading KML:", err); // Very important for debugging
-});
+// Load both KML files
+loadKml(kmlUrl1);
+loadKml(kmlUrl2);
