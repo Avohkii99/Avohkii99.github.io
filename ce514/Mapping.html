@@ -48,9 +48,8 @@
     <div id="distanceResult" style="margin-top: 20px;"></div>
 	<h2>Importing a KML is really quite simple. All you need to do is load the omnivore package, and then append your kml to the operation. You can even add a few extra details if you like!</h2>
 	<code>
-		<script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
+		src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'
 
-		<script>
 		const kmlUrl = '/ce514/Path.kml';
 		
 		omnivore.kml(kmlUrl).on('ready', function() {
@@ -65,7 +64,7 @@
 		  });
 		
 		  map.fitBounds(kmlLayer.getBounds()); // Fit map to KML bounds (after it's loaded)
-		</script>
+		
 	</code>
     </div>
 </div>
