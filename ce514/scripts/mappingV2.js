@@ -20,6 +20,9 @@ const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	const marker5 = L.marker([43.527870847236656, -111.9295179493799]).addTo(map)
 		.bindPopup('Iona Library');
 
+  const marker6 = L.marker([43.496811111479424, -111.85024998695548]).addTo(map)
+		.bindPopup('Sledding Hill');
+
 	var polygonPoints = [
     		L.latLng(43.47383436482361, -111.93360831829914), // Point 1
     		L.latLng(43.47369032745533, -111.93391409013509), // Point 2
