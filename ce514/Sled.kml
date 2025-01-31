@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>Untitled project</name>
+	<gx:CascadingStyle kml:id="__managed_style_1A2260E2CF35F058E67C">
+		<Style>
+			<IconStyle>
+				<Icon>
+					<href>https://earth.google.com/earth/document/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+				<displayMode>hide</displayMode>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<gx:CascadingStyle kml:id="__managed_style_214E872D7B35F058E67C">
+		<Style>
+			<IconStyle>
+				<scale>1.2</scale>
+				<Icon>
+					<href>https://earth.google.com/earth/document/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>6</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+				<displayMode>hide</displayMode>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<StyleMap id="__managed_style_0044977A1F35F058E67C">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#__managed_style_1A2260E2CF35F058E67C</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#__managed_style_214E872D7B35F058E67C</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Placemark id="0A9E475CCF35F058E673">
+		<name>Ye Olde Sledding Hill</name>
+		<LookAt>
+			<longitude>-111.9331950387119</longitude>
+			<latitude>43.47572088249191</latitude>
+			<altitude>1440.093413063429</altitude>
+			<heading>3.830519539735903</heading>
+			<tilt>37.48810046829834</tilt>
+			<gx:fovy>30.0001336079934</gx:fovy>
+			<range>1053.361536432785</range>
+			<altitudeMode>absolute</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_0044977A1F35F058E67C</styleUrl>
+		<LineString>
+			<coordinates>
+				-111.8498721070215,43.4968597165889,0 -111.8585458402487,43.49965035554429,0 -111.8761110379635,43.50644176832741,0 -111.8860630162581,43.51096377014038,0 -111.9047870543498,43.51093599838899,0 -111.904911215932,43.5002613114207,0 -111.9042582531048,43.49811680129915,0 -111.9041578392039,43.49648783189027,0 -111.9046763240603,43.49563699748456,0 -111.9051740167953,43.49421150075771,0 -111.9051116059775,43.48991199349937,0 -111.9045778863991,43.48853018982262,0 -111.9030778981505,43.48688209731225,0 -111.902848680517,43.48515341323711,0 -111.9040737270974,43.48430124729665,0 -111.9056297612066,43.48351305390817,0 -111.9063923979473,43.47879540815494,0 -111.9332352960154,43.478446342811,0 -111.9330711701926,43.47726982924588,0 -111.9332675365752,43.47698850527243,0 -111.9336851427257,43.47665020111741,0 -111.9338092958631,43.47627765173531,0 -111.933863204183,43.47587266252111,0 -111.93385323785,43.474977887557,0 -111.9337223887506,43.47458279396985,0 -111.9335052591216,43.47431822047258,0 -111.9332445488862,43.47405238596287,0 -111.9337374700099,43.47369473665578,0 -111.9338907991814,43.47385436687252,0 
+			</coordinates>
+		</LineString>
+	</Placemark>
+</Document>
+</kml>
