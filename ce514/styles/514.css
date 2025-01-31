@@ -5,7 +5,6 @@ body {
   background-color: #f0f0f0; 
   background-image: url('/images/22379938_6550641.jpg'); /* Absolute path */
   background-size: cover;
-  background-image: url('c:/Users/lesov/OneDrive - BYU/Winter 2025/GIS/Avohkii99.github.io/ce514/images/22379938_6550641.jpg'); /* Absolute path */
   display: flex;
   justify-content: center;
   min-height: 100vh; /* Make the body fill the viewport height */
@@ -153,12 +152,12 @@ nav a:hover {
 }
 
 @font-face {
-		        font-family: 'brush';
-            src: url('../WaterBrush-Regular.ttf'); /* Adjusted path */
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-		    }
+  font-family: 'brush';
+  src: url('../WaterBrush-Regular.ttf'); /* Adjusted path */
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 #distanceResult {
   font-weight: bold;
