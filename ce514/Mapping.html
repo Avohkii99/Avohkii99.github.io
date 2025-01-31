@@ -46,7 +46,28 @@
     </fieldset>
     <button id="calculateDistance" onclick="calculateDistance()">Calculate Distance</button>
     <div id="distanceResult" style="margin-top: 20px;"></div>
-  </div>
+	<h2>Importing a KML is really quite simple. All you need to do is load the omnivore package, and then append your kml to the operation. You can even add a few extra details if you like!</h2>
+	<code>
+		<script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
+
+		<script>
+		const kmlUrl = '/ce514/Path.kml';
+		
+		omnivore.kml(kmlUrl).on('ready', function() {
+		  const kmlLayer = this; // Store 'this' (the layer) in a variable
+		
+		  kmlLayer.addTo(map); // Add to the map *before* setting style
+		
+		  kmlLayer.setStyle({ // Now the style will be applied correctly
+		    color: "blue",    // Outline color
+		    weight: 2,       // Outline thickness (adjust as needed)
+		    fill: false     // Do not fill the polygon.
+		  });
+		
+		  map.fitBounds(kmlLayer.getBounds()); // Fit map to KML bounds (after it's loaded)
+		</script>
+	</code>
+    </div>
 </div>
 
 <script src="scripts/mappingV2.js"></script>
