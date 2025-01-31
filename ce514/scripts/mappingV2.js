@@ -56,7 +56,7 @@ function radToDeg(radians) {
 
 function haversineDistance(lat1, lon1, lat2, lon2) {
   const dLat = degToRad(lat2 - lat1);
-  const dLon = degToRad(lon2 - lon1);
+  const dLon = degToRad(lon1 - lon2);
   const a =
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
     Math.cos(degToRad(lat1)) * Math.cos(degToRad(lat2)) *
@@ -144,7 +144,7 @@ const calculateDistanceButton = document.getElementById('calculateDistance');
 // Add event listener to the button
 calculateDistanceButton.addEventListener('click', calculateDistance); 
 
-const kmlUrl = '../ce514/Path.kml'; // Adjusted relative path
+const kmlUrl = '../Path.kml'; // Adjusted relative path
 
 omnivore.kml(kmlUrl).on('ready', function() {
   const kmlLayer = this; // Store 'this' (the layer) in a variable
