@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f0f0f0; 
-  background-image: url('/images/22379938_6550641.jpg'); /* Absolute path */
+  background-image: url('../22379938_6550641.jpg'); /* Adjusted relative path */
   background-size: cover;
   display: flex;
   justify-content: center;
