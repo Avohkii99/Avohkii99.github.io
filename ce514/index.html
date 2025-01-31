@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Map</title>
+  <link rel="stylesheet" href="styles/514.css">
+  <link rel="icon" href="images/favicon.ico">
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-omnivore@0.3.4/leaflet-omnivore.min.js"></script>
+</head>
+<body>
+  <div id="map" style="width: 100%; height: 600px;"></div>
+  <input type="text" id="location1" placeholder="Enter first location (lat,lng)">
+  <input type="text" id="location2" placeholder="Enter second location (lat,lng)">
+  <button id="calculateDistance">Calculate Distance</button>
+  <div id="distanceResult"></div>
+  <script src="scripts/mappingV2.js"></script>
+</body>
+</html>
