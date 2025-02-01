@@ -30,6 +30,24 @@ const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   const marker6 = L.marker([43.496811111479424, -111.85024998695548], { icon: sledIcon }).addTo(map)
     .bindPopup('Sledding Hill');
 
+  // Define the path for the marker to move along
+  const path = [
+    [43.496811111479424, -111.85024998695548],
+    [43.49552103260087, -111.85838155053446],
+    [43.49740000000000, -111.85090000000000]
+  ];
+
+  // Function to move the marker along the path
+  function moveMarker(marker, path, index = 0) {
+    if (index < path.length) {
+      marker.setLatLng(path[index]);
+      setTimeout(() => moveMarker(marker, path, index + 1), 1000); // Move to the next point after 1 second
+    }
+  }
+
+  // Start moving the marker
+  moveMarker(marker6, path);
+
 	var polygonPoints = [
     		L.latLng(43.47383436482361, -111.93360831829914), // Point 1
     		L.latLng(43.47369032745533, -111.93391409013509), // Point 2
