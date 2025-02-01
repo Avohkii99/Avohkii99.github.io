@@ -41,7 +41,7 @@ const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   function moveMarker(marker, path, index = 0) {
     if (index < path.length) {
       marker.setLatLng(path[index]);
-      setTimeout(() => moveMarker(marker, path, index + 1), 1000); // Move to the next point after 1 second
+      setTimeout(() => moveMarker(marker, path, (index + 1) % path.length), 1000); // Move to the next point after 3 seconds and loop
     }
   }
 
