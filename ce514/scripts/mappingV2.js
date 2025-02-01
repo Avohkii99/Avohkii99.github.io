@@ -36,34 +36,16 @@ const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     [43.49552103260087, -111.85838155053446]
   ];
 
-  // Function to move the marker along the path in smaller increments
-  function moveMarker(marker, path, index = 0, increment = 0.01) {
-    if (index < path.length - 1) {
-      const start = path[index];
-      const end = path[index + 1];
-      const latDiff = end[0] - start[0];
-      const lngDiff = end[1] - start[1];
-      const steps = Math.ceil(Math.max(Math.abs(latDiff), Math.abs(lngDiff)) / increment);
-      let step = 0;
-
-      function moveStep() {
-        if (step <= steps) {
-          const lat = start[0] + (latDiff * step / steps);
-          const lng = start[1] + (lngDiff * step / steps);
-          marker.setLatLng([lat, lng]);
-          step++;
-          setTimeout(moveStep, 100); // Adjust the speed as needed
-        } else {
-          moveMarker(marker, path, index + 1, increment);
-        }
-      }
-
-      moveStep();
-    }
+// Function to move the marker along the path
+function moveMarker(marker, path, index = 0) {
+  if (index < path.length) {
+    marker.setLatLng(path[index]);
+    setTimeout(() => moveMarker(marker, path, (index + 1) % path.length), 1000); // Move to the next point after 3 seconds and loop
   }
+}
 
-  // Start moving the marker
-  moveMarker(marker6, path);
+// Start moving the marker
+moveMarker(marker6, path);
 
 	var polygonPoints = [
     		L.latLng(43.47383436482361, -111.93360831829914), // Point 1
