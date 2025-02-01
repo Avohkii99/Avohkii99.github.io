@@ -33,8 +33,7 @@ const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   // Define the path for the marker to move along
   const path = [
     [43.496811111479424, -111.85024998695548],
-    [43.49552103260087, -111.85838155053446],
-    [43.49740000000000, -111.85090000000000]
+    [43.49552103260087, -111.85838155053446]
   ];
 
   // Function to move the marker along the path
