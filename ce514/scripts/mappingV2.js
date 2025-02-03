@@ -23,7 +23,7 @@ const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   const sledIcon = L.icon({
     iconUrl: '/ce514/Sled.png', // Replace with the path to your custom sled image
     iconSize: [32, 32], // Adjust the size as needed
-    iconAnchor: [16, 32], // Anchor the icon (center bottom)
+    iconAnchor: [16, 16], // Anchor the icon (center bottom)
     popupAnchor: [0, -32] // Position the popup above the icon
   });
 
