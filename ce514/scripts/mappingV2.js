@@ -38,25 +38,45 @@ const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // Function to move the marker along the path
 function moveMarker(marker, path, index = 0, forward = true) {
-  marker.setLatLng(path[index]);
+  const duration = 1000; // Duration of the animation in milliseconds
+  const nextIndex = forward ? index + 1 : index - 1;
 
-  let nextIndex;
-  if (forward) {
-    nextIndex = index + 1;
-    if (nextIndex >= path.length) {
-      nextIndex = path.length - 2;
-      forward = false;
-    }
-  } else {
-    nextIndex = index - 1;
-    if (nextIndex < 0) {
-      nextIndex = 1;
-      forward = true;
-    }
+  if (nextIndex >= path.length || nextIndex < 0) {
+    forward = !forward;
+    moveMarker(marker, path, index, forward);
+    return;
   }
 
-  setTimeout(() => moveMarker(marker, path, nextIndex, forward), 1000); // Move to the next point after 1 second
+  marker.setLatLng(path[index]).slideTo(path[nextIndex], {
+    duration: duration,
+    keepAtCenter: false
+  });
+
+  setTimeout(() => moveMarker(marker, path, nextIndex, forward), duration);
 }
+
+// Add the slideTo method to the marker
+L.Marker.prototype.slideTo = function (latlng, options) {
+  const start = this.getLatLng();
+  const end = L.latLng(latlng);
+  const duration = options.duration || 1000;
+  const startTime = performance.now();
+
+  const animate = (time) => {
+    const elapsed = time - startTime;
+    const t = Math.min(elapsed / duration, 1);
+    const lat = start.lat + (end.lat - start.lat) * t;
+    const lng = start.lng + (end.lng - start.lng) * t;
+    this.setLatLng([lat, lng]);
+
+    if (t < 1) {
+      requestAnimationFrame(animate);
+    }
+  };
+
+  requestAnimationFrame(animate);
+  return this;
+};
 
 // Start moving the marker
 moveMarker(marker6, path);
