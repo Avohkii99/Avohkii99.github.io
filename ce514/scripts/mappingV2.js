@@ -126,7 +126,7 @@ const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   // Extract path from KML and start moving the marker
   extractPathFromKml('/ce514/Path.kml', function(path) {
     if (path.length > 0) {
-      const movingMarker = L.marker(path[0], { icon: carIcon }).addTo(map).bindPopup('Moving Marker');
+      const movingMarker = L.marker(path[0], { icon: carIcon }).addTo(map).bindPopup('Driving to the library...');
       moveMarker(movingMarker, path);
     } else {
       console.error("No path found in KML.");
