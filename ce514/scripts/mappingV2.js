@@ -57,7 +57,7 @@ function moveMarker(marker, path, index = 0, forward = true) {
     }
   }
 
-  setTimeout(() => moveMarker(marker, path, nextIndex, forward), 1000); // Move to the next point after 1 second
+  setTimeout(() => moveMarker(marker, path, nextIndex, forward), 200); // Move to the next point after 1 second
 }
 
 // Start moving the marker
