@@ -31,10 +31,20 @@ const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     .bindPopup('Sledding Hill');
 
   // Define the path for the marker to move along
-  const path = [
-    [43.496811111479424, -111.85024998695548],
-    [43.49552103260087, -111.85838155053446]
-  ];
+  const path = [];
+  const numPoints = 10; // Number of intermediate points
+
+  const startPoint = [43.496811111479424, -111.85024998695548];
+  const endPoint = [43.49552103260087, -111.85838155053446];
+
+  const latStep = (endPoint[0] - startPoint[0]) / (numPoints + 1);
+  const lngStep = (endPoint[1] - startPoint[1]) / (numPoints + 1);
+
+  for (let i = 0; i <= numPoints + 1; i++) {
+    const lat = startPoint[0] + latStep * i;
+    const lng = startPoint[1] + lngStep * i;
+    path.push([lat, lng]);
+  }
 
 // Function to move the marker along the path
 function moveMarker(marker, path, index = 0, forward = true) {
