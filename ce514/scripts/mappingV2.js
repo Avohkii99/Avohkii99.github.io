@@ -31,62 +31,34 @@ const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     .bindPopup('Sledding Hill');
 
   // Define the path for the marker to move along
-  const path = [];
-  const numPoints = 10; // Number of intermediate points
-
-  const startPoint = [43.496811111479424, -111.85024998695548];
-  const endPoint = [43.49552103260087, -111.85838155053446];
-
-  const latStep = (endPoint[0] - startPoint[0]) / (numPoints + 1);
-  const lngStep = (endPoint[1] - startPoint[1]) / (numPoints + 1);
-
-  for (let i = 0; i <= numPoints + 1; i++) {
-    const lat = startPoint[0] + latStep * i;
-    const lng = startPoint[1] + lngStep * i;
-    path.push([lat, lng]);
-  }
+  const path = [
+    [43.496811111479424, -111.85024998695548],
+    [43.49616607, -111.8543158],
+    [43.49552103260087, -111.85838155053446],
+    [43.49616607, -111.8543158]
+  ];
 
 // Function to move the marker along the path
 function moveMarker(marker, path, index = 0, forward = true) {
-  const duration = 1000; // Duration of the animation in milliseconds
-  const nextIndex = forward ? index + 1 : index - 1;
+  marker.setLatLng(path[index]);
 
-  if (nextIndex >= path.length || nextIndex < 0) {
-    forward = !forward;
-    moveMarker(marker, path, index, forward);
-    return;
+  let nextIndex;
+  if (forward) {
+    nextIndex = index + 1;
+    if (nextIndex >= path.length) {
+      nextIndex = path.length - 2;
+      forward = false;
+    }
+  } else {
+    nextIndex = index - 1;
+    if (nextIndex < 0) {
+      nextIndex = 1;
+      forward = true;
+    }
   }
 
-  marker.setLatLng(path[index]).slideTo(path[nextIndex], {
-    duration: duration,
-    keepAtCenter: false
-  });
-
-  setTimeout(() => moveMarker(marker, path, nextIndex, forward), duration);
+  setTimeout(() => moveMarker(marker, path, nextIndex, forward), 1000); // Move to the next point after 1 second
 }
-
-// Add the slideTo method to the marker
-L.Marker.prototype.slideTo = function (latlng, options) {
-  const start = this.getLatLng();
-  const end = L.latLng(latlng);
-  const duration = options.duration || 1000;
-  const startTime = performance.now();
-
-  const animate = (time) => {
-    const elapsed = time - startTime;
-    const t = Math.min(elapsed / duration, 1);
-    const lat = start.lat + (end.lat - start.lat) * t;
-    const lng = start.lng + (end.lng - start.lng) * t;
-    this.setLatLng([lat, lng]);
-
-    if (t < 1) {
-      requestAnimationFrame(animate);
-    }
-  };
-
-  requestAnimationFrame(animate);
-  return this;
-};
 
 // Start moving the marker
 moveMarker(marker6, path);
