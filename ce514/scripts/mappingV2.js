@@ -173,19 +173,24 @@ calculateDistanceButton.addEventListener('click', calculateDistance);
 
 const kmlUrl1 = '/ce514/Path.kml'; // Adjusted relative path for the first KML
 const kmlUrl2 = '/ce514/Sled.kml'; // Adjusted relative path for the second KML
+const kmlUrl3 = '/ce514/Hill.kml'; // Adjusted relative path for the third KML
 
 // Function to load and style KML
-function loadKml(url) {
+function loadKml(url, customStyle = null) {
   omnivore.kml(url).on('ready', function() {
     const kmlLayer = this; // Store 'this' (the layer) in a variable
 
     kmlLayer.addTo(map); // Add to the map *before* setting style
 
-    kmlLayer.setStyle({ // Now the style will be applied correctly
-      color: "blue",    // Outline color
-      weight: 2,       // Outline thickness (adjust as needed)
-      fill: false     // Do not fill the polygon.
-    });
+    if (customStyle) {
+      kmlLayer.setStyle(customStyle); // Apply custom style if provided
+    } else {
+      kmlLayer.setStyle({ // Default style
+        color: "blue",    // Outline color
+        weight: 2,       // Outline thickness (adjust as needed)
+        fill: false     // Do not fill the polygon.
+      });
+    }
 
     map.fitBounds(kmlLayer.getBounds()); // Fit map to KML bounds (after it's loaded)
 
@@ -194,6 +199,19 @@ function loadKml(url) {
   });
 }
 
-// Load both KML files
+// Load KML files with appropriate styles
 loadKml(kmlUrl1);
 loadKml(kmlUrl2);
+loadKml(kmlUrl3, {
+  color: "blue",    // Outline color
+  weight: 2,       // Outline thickness (adjust as needed)
+  fill: true,      // Fill the polygon
+  fillPattern: new L.Pattern({
+    width: 32,
+    height: 32,
+    patternContentUnits: 'objectBoundingBox',
+    patternUnits: 'userSpaceOnUse',
+    patternTransform: 'rotate(45)',
+    image: new Image(32, 32, '/ce514/customImage.png') // Path to your custom image
+  })
+});
