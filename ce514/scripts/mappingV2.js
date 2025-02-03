@@ -37,11 +37,25 @@ const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   ];
 
 // Function to move the marker along the path
-function moveMarker(marker, path, index = 0) {
-  if (index < path.length) {
-    marker.setLatLng(path[index]);
-    setTimeout(() => moveMarker(marker, path, (index + 1) % path.length), 1000); // Move to the next point after 3 seconds and loop
+function moveMarker(marker, path, index = 0, forward = true) {
+  marker.setLatLng(path[index]);
+
+  let nextIndex;
+  if (forward) {
+    nextIndex = index + 1;
+    if (nextIndex >= path.length) {
+      nextIndex = path.length - 2;
+      forward = false;
+    }
+  } else {
+    nextIndex = index - 1;
+    if (nextIndex < 0) {
+      nextIndex = 1;
+      forward = true;
+    }
   }
+
+  setTimeout(() => moveMarker(marker, path, nextIndex, forward), 1000); // Move to the next point after 1 second
 }
 
 // Start moving the marker
@@ -206,12 +220,6 @@ loadKml(kmlUrl3, {
   color: "blue",    // Outline color
   weight: 2,       // Outline thickness (adjust as needed)
   fill: true,      // Fill the polygon
-  fillPattern: new L.Pattern({
-    width: 32,
-    height: 32,
-    patternContentUnits: 'objectBoundingBox',
-    patternUnits: 'userSpaceOnUse',
-    patternTransform: 'rotate(45)',
-    image: new Image(32, 32, '/ce514/customImage.png') // Path to your custom image
-  })
+  fillColor: 'white', // Fill color
+  fillOpacity: 0.8  // Fill opacity
 });
