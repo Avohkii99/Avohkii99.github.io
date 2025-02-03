@@ -2,29 +2,7 @@
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
 <Document>
 	<name>Untitled project</name>
-	<gx:CascadingStyle kml:id="__managed_style_10673EC6ED35ED60EAB3">
-		<Style>
-			<IconStyle>
-				<Icon>
-					<href>https://earth.google.com/earth/document/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
-				</Icon>
-				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
-			</IconStyle>
-			<LabelStyle>
-			</LabelStyle>
-			<LineStyle>
-				<color>ff2dc0fb</color>
-				<width>4</width>
-			</LineStyle>
-			<PolyStyle>
-				<color>40ffffff</color>
-			</PolyStyle>
-			<BalloonStyle>
-				<displayMode>hide</displayMode>
-			</BalloonStyle>
-		</Style>
-	</gx:CascadingStyle>
-	<gx:CascadingStyle kml:id="__managed_style_27E0688AFC35ED60EAB3">
+	<gx:CascadingStyle kml:id="__managed_style_2A2B3C29A836037AA672">
 		<Style>
 			<IconStyle>
 				<scale>1.2</scale>
@@ -47,32 +25,54 @@
 			</BalloonStyle>
 		</Style>
 	</gx:CascadingStyle>
-	<StyleMap id="__managed_style_0AD7988D0235ED60EAB3">
+	<gx:CascadingStyle kml:id="__managed_style_184731326836037AA672">
+		<Style>
+			<IconStyle>
+				<Icon>
+					<href>https://earth.google.com/earth/document/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+				<displayMode>hide</displayMode>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<StyleMap id="__managed_style_0B01E0401336037AA672">
 		<Pair>
 			<key>normal</key>
-			<styleUrl>#__managed_style_10673EC6ED35ED60EAB3</styleUrl>
+			<styleUrl>#__managed_style_184731326836037AA672</styleUrl>
 		</Pair>
 		<Pair>
 			<key>highlight</key>
-			<styleUrl>#__managed_style_27E0688AFC35ED60EAB3</styleUrl>
+			<styleUrl>#__managed_style_2A2B3C29A836037AA672</styleUrl>
 		</Pair>
 	</StyleMap>
-	<Placemark id="01B8DE699D35ED60EAAE">
-		<name>Iona Library Path</name>
+	<Placemark id="0196DEB27336037AA663">
+		<name>Untitled path</name>
 		<LookAt>
-			<longitude>-111.9229219429467</longitude>
-			<latitude>43.52180332687298</latitude>
-			<altitude>1456.140357630326</altitude>
-			<heading>-0.5367510478036231</heading>
-			<tilt>0.2663804413734074</tilt>
-			<gx:fovy>35</gx:fovy>
-			<range>2811.253858550044</range>
+			<longitude>-111.9279079964052</longitude>
+			<latitude>43.52749773912578</latitude>
+			<altitude>1453.573202726027</altitude>
+			<heading>-2.013043649985539</heading>
+			<tilt>10.06998632071765</tilt>
+			<gx:fovy>30.00000000000655</gx:fovy>
+			<range>3171.011178609333</range>
 			<altitudeMode>absolute</altitudeMode>
 		</LookAt>
-		<styleUrl>#__managed_style_0AD7988D0235ED60EAB3</styleUrl>
+		<styleUrl>#__managed_style_0B01E0401336037AA672</styleUrl>
 		<LineString>
 			<coordinates>
-				-111.9337879900582,43.47371676090462,0 -111.933237719697,43.47406740357922,0 -111.9336812830963,43.47459353055422,0 -111.9338021508438,43.47495409278525,0 -111.9338429727489,43.47619237455232,0 -111.9337494212241,43.476553869044,0 -111.9332790780962,43.47696345140247,0 -111.9331177293785,43.47724589537372,0 -111.9330773536126,43.47762583768882,0 -111.9330636513961,43.4779363468306,0 -111.9331035560094,43.47839212350888,0 -111.9301693592436,43.47847042144937,0 -111.9293869889987,43.4790422763231,0 -111.9291296280961,43.47945771905015,0 -111.9290735626255,43.48035032501646,0 -111.9291479111145,43.49657334031835,0 -111.9242937179426,43.49671561214326,0 -111.9241858069485,43.52552941292139,0 -111.9299535076774,43.52529531199373,0 -111.9299445954284,43.52786716505364,0 
+				-111.933837572867,43.473735855868,0 -111.9332398383555,43.47401536584377,0 -111.9337792352933,43.47474254624263,0 -111.9338367774723,43.47622623395939,0 -111.9332189540357,43.4770666947061,0 -111.9330856792325,43.47836583081913,0 -111.930216621581,43.47844949334947,0 -111.9290321721601,43.47990042128928,0 -111.9290603949323,43.48408322423764,0 -111.929113891932,43.48860223867047,0 -111.9291676140812,43.49319977724674,0 -111.9292756694977,43.49653991112508,0 -111.9262421170167,43.4966576690654,0 -111.9242377661454,43.49673614502188,0 -111.924303459671,43.50112689796516,0 -111.9241984505882,43.50595136173771,0 -111.9241444747468,43.510025217715,0 -111.9242014619427,43.51394401630759,0 -111.9241507195928,43.51716017874908,0 -111.9242044378628,43.52056848634813,0 -111.9242065885189,43.52401345202429,0 -111.9242708308144,43.52550121463577,0 -111.9256918454944,43.52549207203366,0 -111.9274251935671,43.52542470689335,0 -111.9297831370786,43.52531483442583,0 -111.9298951890588,43.52658441860702,0 -111.9299484601928,43.5280553894446,0 -111.9294916821965,43.52809421140417,0 
 			</coordinates>
 		</LineString>
 	</Placemark>
