@@ -30,65 +30,105 @@ const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   const marker6 = L.marker([43.496811111479424, -111.85024998695548], { icon: sledIcon }).addTo(map)
     .bindPopup('Sledding Hill');
 
-  // Define the path for the marker to move along
-  const path = [];
+  // Define the paths for the markers to move along
+  const paths = [
+    {
+      marker: marker6,
+      path: [],
+      startPoint: [43.496811111479424, -111.85024998695548],
+      endPoint: [43.49552103260087, -111.85838155053446]
+    },
+    {
+      marker: L.marker([43.473956788279345, -111.93393322063366], { icon: sledIcon }).addTo(map).bindPopup('Moving Marker'),
+      path: [],
+      startPoint: [43.473956788279345, -111.93393322063366],
+      endPoint: [43.470144518588384, -111.97770611971362]
+    }
+  ];
+
   const numPoints = 10; // Number of intermediate points
 
-  const startPoint = [43.496811111479424, -111.85024998695548];
-  const endPoint = [43.49552103260087, -111.85838155053446];
+  paths.forEach(item => {
+    const latStep = (item.endPoint[0] - item.startPoint[0]) / (numPoints + 1);
+    const lngStep = (item.endPoint[1] - item.startPoint[1]) / (numPoints + 1);
 
-  const latStep = (endPoint[0] - startPoint[0]) / (numPoints + 1);
-  const lngStep = (endPoint[1] - startPoint[1]) / (numPoints + 1);
-
-  for (let i = 0; i <= numPoints + 1; i++) {
-    const lat = startPoint[0] + latStep * i;
-    const lng = startPoint[1] + lngStep * i;
-    path.push([lat, lng]);
-  }
-
-// Function to move the marker along the path
-function moveMarker(marker, path, index = 0, forward = true) {
-  const duration = 200; // Duration of the animation in milliseconds
-  const nextIndex = forward ? index + 1 : index - 1;
-
-  if (nextIndex >= path.length || nextIndex < 0) {
-    forward = !forward;
-    moveMarker(marker, path, index, forward);
-    return;
-  }
-
-  marker.setLatLng(path[index]).slideTo(path[nextIndex], {
-    duration: duration,
-    keepAtCenter: false
+    for (let i = 0; i <= numPoints + 1; i++) {
+      const lat = item.startPoint[0] + latStep * i;
+      const lng = item.startPoint[1] + lngStep * i;
+      item.path.push([lat, lng]);
+    }
   });
 
-  setTimeout(() => moveMarker(marker, path, nextIndex, forward), duration);
-}
+  // Function to move the marker along the path
+  function moveMarker(marker, path, index = 0, forward = true) {
+    const duration = 200; // Duration of the animation in milliseconds
+    const nextIndex = forward ? index + 1 : index - 1;
 
-// Add the slideTo method to the marker
-L.Marker.prototype.slideTo = function (latlng, options) {
-  const start = this.getLatLng();
-  const end = L.latLng(latlng);
-  const duration = options.duration || 200;
-  const startTime = performance.now();
-
-  const animate = (time) => {
-    const elapsed = time - startTime;
-    const t = Math.min(elapsed / duration, 1);
-    const lat = start.lat + (end.lat - start.lat) * t;
-    const lng = start.lng + (end.lng - start.lng) * t;
-    this.setLatLng([lat, lng]);
-
-    if (t < 1) {
-      requestAnimationFrame(animate);
+    if (nextIndex >= path.length || nextIndex < 0) {
+      forward = !forward;
+      moveMarker(marker, path, index, forward);
+      return;
     }
+
+    marker.setLatLng(path[index]).slideTo(path[nextIndex], {
+      duration: duration,
+      keepAtCenter: false
+    });
+
+    setTimeout(() => moveMarker(marker, path, nextIndex, forward), duration);
+  }
+
+  // Add the slideTo method to the marker
+  L.Marker.prototype.slideTo = function (latlng, options) {
+    const start = this.getLatLng();
+    const end = L.latLng(latlng);
+    const duration = options.duration || 200;
+    const startTime = performance.now();
+
+    const animate = (time) => {
+      const elapsed = time - startTime;
+      const t = Math.min(elapsed / duration, 1);
+      const lat = start.lat + (end.lat - start.lat) * t;
+      const lng = start.lng + (end.lng - start.lng) * t;
+      this.setLatLng([lat, lng]);
+
+      if (t < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+    return this;
   };
 
-  requestAnimationFrame(animate);
-  return this;
-};
-// Start moving the marker
-moveMarker(marker6, path);
+  // Start moving the markers
+  paths.forEach(item => moveMarker(item.marker, item.path));
+  // Function to extract coordinates from KML and create a path
+  function extractPathFromKml(url, callback) {
+    omnivore.kml(url).on('ready', function() {
+      const kmlLayer = this;
+      const path = [];
+
+      kmlLayer.eachLayer(function(layer) {
+        if (layer instanceof L.Polyline) {
+          layer.getLatLngs().forEach(latlng => path.push([latlng.lat, latlng.lng]));
+        }
+      });
+
+      callback(path);
+    }).on('error', function(err) {
+      console.error("Error loading KML:", err);
+    });
+  }
+
+  // Extract path from KML and start moving the marker
+  extractPathFromKml('/ce514/Path.kml', function(path) {
+    if (path.length > 0) {
+      moveMarker(paths[1].marker, path);
+    } else {
+      console.error("No path found in KML.");
+    }
+  });
 
 	var polygonPoints = [
     		L.latLng(43.47383436482361, -111.93360831829914), // Point 1
