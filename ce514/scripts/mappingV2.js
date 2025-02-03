@@ -221,5 +221,5 @@ loadKml(kmlUrl3, {
   weight: 2,       // Outline thickness (adjust as needed)
   fill: true,      // Fill the polygon
   fillColor: 'blue', // Fill color
-  fillOpacity: 0.6  // Fill opacity
+  fillOpacity: 0.4  // Fill opacity
 });
