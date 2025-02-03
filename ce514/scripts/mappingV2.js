@@ -48,7 +48,7 @@ const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // Function to move the marker along the path
 function moveMarker(marker, path, index = 0, forward = true) {
-  const duration = 1000; // Duration of the animation in milliseconds
+  const duration = 200; // Duration of the animation in milliseconds
   const nextIndex = forward ? index + 1 : index - 1;
 
   if (nextIndex >= path.length || nextIndex < 0) {
@@ -69,7 +69,7 @@ function moveMarker(marker, path, index = 0, forward = true) {
 L.Marker.prototype.slideTo = function (latlng, options) {
   const start = this.getLatLng();
   const end = L.latLng(latlng);
-  const duration = options.duration || 1000;
+  const duration = options.duration || 200;
   const startTime = performance.now();
 
   const animate = (time) => {
