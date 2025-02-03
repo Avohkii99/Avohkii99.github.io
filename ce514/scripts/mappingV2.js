@@ -257,9 +257,22 @@ const calculateDistanceButton = document.getElementById('calculateDistance');
 // Add event listener to the button
 calculateDistanceButton.addEventListener('click', calculateDistance); 
 
-const kmlUrl1 = '/ce514/Path.kml'; // Adjusted relative path for the first KML
-const kmlUrl2 = '/ce514/Sled.kml'; // Adjusted relative path for the second KML
-const kmlUrl3 = '/ce514/Hill.kml'; // Adjusted relative path for the third KML
+const kmlUrls = [
+  { url: '/ce514/Path.kml', style: null }, // Adjusted relative path for the first KML
+  { url: '/ce514/Sled.kml', style: null }, // Adjusted relative path for the second KML
+  { 
+    url: '/ce514/Hill.kml', // Adjusted relative path for the third KML
+    style: {
+      color: "blue",    // Outline color
+      weight: 2,       // Outline thickness (adjust as needed)
+      fill: true,      // Fill the polygon
+      fillColor: 'blue', // Fill color
+      fillOpacity: 0.4  // Fill opacity
+    }
+  }
+];
+
+const allBounds = L.latLngBounds(); // Initialize an empty LatLngBounds object
 
 // Function to load and style KML
 function loadKml(url, customStyle = null) {
@@ -278,20 +291,17 @@ function loadKml(url, customStyle = null) {
       });
     }
 
-    map.fitBounds(kmlLayer.getBounds()); // Fit map to KML bounds (after it's loaded)
+    allBounds.extend(kmlLayer.getBounds()); // Extend the combined bounds
 
   }).on('error', function(err) {
     console.error("Error loading KML:", err); // Very important for debugging
   });
 }
 
-// Load KML files with appropriate styles
-loadKml(kmlUrl1);
-loadKml(kmlUrl2);
-loadKml(kmlUrl3, {
-  color: "blue",    // Outline color
-  weight: 2,       // Outline thickness (adjust as needed)
-  fill: true,      // Fill the polygon
-  fillColor: 'blue', // Fill color
-  fillOpacity: 0.4  // Fill opacity
-});
+// Load all KML files
+kmlUrls.forEach(item => loadKml(item.url, item.style));
+
+// Fit map to the combined bounds after a short delay to ensure all layers are loaded
+setTimeout(() => {
+  map.fitBounds(allBounds);
+}, 1000); // Adjust the delay as needed
