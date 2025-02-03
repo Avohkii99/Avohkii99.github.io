@@ -27,6 +27,13 @@ const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     popupAnchor: [0, -32] // Position the popup above the icon
   });
 
+  const carIcon = L.icon({
+    iconUrl: '/ce514/car.png', // Replace with the path to your custom sled image
+    iconSize: [32, 32], // Adjust the size as needed
+    iconAnchor: [16, 32], // Anchor the icon (center bottom)
+    popupAnchor: [0, -32] // Position the popup above the icon
+  });
+
   const marker6 = L.marker([43.496811111479424, -111.85024998695548], { icon: sledIcon }).addTo(map)
     .bindPopup('Sledding Hill');
 
@@ -37,12 +44,6 @@ const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       path: [],
       startPoint: [43.496811111479424, -111.85024998695548],
       endPoint: [43.49552103260087, -111.85838155053446]
-    },
-    {
-      marker: L.marker([43.473956788279345, -111.93393322063366], { icon: sledIcon }).addTo(map).bindPopup('Moving Marker'),
-      path: [],
-      startPoint: [43.473956788279345, -111.93393322063366],
-      endPoint: [43.470144518588384, -111.97770611971362]
     }
   ];
 
@@ -103,6 +104,7 @@ const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
   // Start moving the markers
   paths.forEach(item => moveMarker(item.marker, item.path));
+  
   // Function to extract coordinates from KML and create a path
   function extractPathFromKml(url, callback) {
     omnivore.kml(url).on('ready', function() {
@@ -124,7 +126,8 @@ const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   // Extract path from KML and start moving the marker
   extractPathFromKml('/ce514/Path.kml', function(path) {
     if (path.length > 0) {
-      moveMarker(paths[1].marker, path);
+      const movingMarker = L.marker(path[0], { icon: carIcon }).addTo(map).bindPopup('Moving Marker');
+      moveMarker(movingMarker, path);
     } else {
       console.error("No path found in KML.");
     }
