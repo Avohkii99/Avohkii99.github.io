@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<base target="_top">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+	<!--  <link rel="stylesheet" href="https://unpkg.com/leaflet-kml@latest/dist/leaflet-kml.css" /> -->
+	<!--  <script src="https://unpkg.com/leaflet-kml@latest/dist/leaflet-kml.js"></script> -->
+
+	<script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
+	
+<title>HydroShare Demo</title>
+
+<link rel="stylesheet" href="styles/514.css">
+ 
+</head>
+<body>
+
+<header>
+  <h1>HydroShare Demo</h1>
+  <h2>Jared Jewell</h2>
+  <h2>CE 514</h2>
+  <h2>2/4/25</h2>
+</header>
+
+<div class="container">
+<div id="map" style="width: 90%; height: 60%; border-radius: 10px; margin: 0 auto;"></div>
+	<br>
+<div class="control-panel">
+    <fieldset>
+      <legend>Enter Locations</legend>
+      <label for="location1">
+	      <b>Location 1:</b>
+      </label> <input type="text" id="location1" placeholder="Latitude, Longitude">
+      <br><br>
+      <label for="location2">
+	      <b>Location 2:</b>
+      </label> <input type="text" id="location2" placeholder="Latitude, Longitude">
+    </fieldset>
+    <button id="calculateDistance" onclick="calculateDistance()">Calculate Distance</button>
+    <div id="distanceResult" style="margin-top: 20px;"></div>
+	<h2>Importing a KML is really quite simple. All you need to do is load the omnivore package, and then append your kml to the operation. You can even add a few extra details if you like!</h2>
+    <div class="code-container">
+		<code>
+		  src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'<br>
+		  const kmlUrl = '/ce514/Path.kml';<br><br>
+		  omnivore.kml(kmlUrl).on('ready', function() {<br>
+			&nbsp;&nbsp;const kmlLayer = this; // Store 'this' (the layer) in a variable<br>
+			&nbsp;&nbsp;kmlLayer.addTo(map); // Add to the map *before* setting style<br>
+			&nbsp;&nbsp;kmlLayer.setStyle({ // Now the style will be applied correctly<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;color: "blue",    // Outline color<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;weight: 2,       // Outline thickness (adjust as needed)<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;fill: false     // Do not fill the polygon.<br>
+			&nbsp;&nbsp;});<br>
+			&nbsp;&nbsp;map.fitBounds(kmlLayer.getBounds()); // Fit map to KML bounds (after it's loaded)<br>
+		  });
+		</code>
+	  </div>
+    </div>
+</div>
+
+<script src="scripts/HydroShare.js"></script>
+	
+</body>
+</html>
