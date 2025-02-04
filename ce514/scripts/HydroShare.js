@@ -6,7 +6,7 @@ const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-0b3452c0c2d34f099e6da847a6ce828d/wms', {
-  layers: 'HS-a51c74b3a8734324a53bb2c29ae9df3b:Logannet',
+  layers: 'HS-a51c74b3a8734324a53bb2c29ae9df3b:Logan',
   format: 'image/png',
   transparent: true,
   attribution: 'Hydroshare GeoServer'
