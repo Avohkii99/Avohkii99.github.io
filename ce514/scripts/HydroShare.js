@@ -9,7 +9,7 @@ L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-f6efb0188ee7472b8
   layers: 'HS-f6efb0188ee7472b8dda3a50af6cec56:YosemiteBound',
   format: 'image/png',
   transparent: true,
-  styles: 'line', // This style should be defined in the GeoServer to render the layer as an outline
+  styles: 'line_black_heavy', // This style should be defined in the GeoServer to render the layer as a black, heavier line
   attribution: 'Hydroshare GeoServer'
 }).addTo(map);
 
