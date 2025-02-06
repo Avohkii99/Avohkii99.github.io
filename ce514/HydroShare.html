@@ -34,21 +34,15 @@
 <div id="map" style="width: 90%; height: 60%; border-radius: 10px; margin: 0 auto;"></div>
 	<br>
 <div class="control-panel">
-	<h2>Importing a KML is really quite simple. All you need to do is load the omnivore package, and then append your kml to the operation. You can even add a few extra details if you like!</h2>
+	<h2>HydroShare is pretty finicky, but here is my attempt...</h2>
     <div class="code-container">
 		<code>
-		  src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'<br>
-		  const kmlUrl = '/ce514/Path.kml';<br><br>
-		  omnivore.kml(kmlUrl).on('ready', function() {<br>
-			&nbsp;&nbsp;const kmlLayer = this; // Store 'this' (the layer) in a variable<br>
-			&nbsp;&nbsp;kmlLayer.addTo(map); // Add to the map *before* setting style<br>
-			&nbsp;&nbsp;kmlLayer.setStyle({ // Now the style will be applied correctly<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;color: "blue",    // Outline color<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;weight: 2,       // Outline thickness (adjust as needed)<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;fill: false     // Do not fill the polygon.<br>
-			&nbsp;&nbsp;});<br>
-			&nbsp;&nbsp;map.fitBounds(kmlLayer.getBounds()); // Fit map to KML bounds (after it's loaded)<br>
-		  });
+            L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-f6efb0188ee7472b8dda3a50af6cec56/wms', {
+                layers: 'HS-f6efb0188ee7472b8dda3a50af6cec56:Trails.xml',
+                format: 'image/png',
+                transparent: true,
+                attribution: 'Hydroshare GeoServer'
+              }).addTo(map); 
 		</code>
 	  </div>
     </div>
