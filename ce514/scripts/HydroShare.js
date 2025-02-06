@@ -32,6 +32,16 @@ const layers = {
     format: 'image/png',
     transparent: true,
     attribution: 'Hydroshare GeoServer'
+  }),
+
+  water: L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-f6efb0188ee7472b8dda3a50af6cec56/wms', {
+    layers: 'HS-f6efb0188ee7472b8dda3a50af6cec56:Water',
+    format: 'image/png',
+    transparent: true,
+    attribution: 'Hydroshare GeoServer'
+  }).on('load', function() {
+    const layer = this.getContainer();
+    layer.style.filter = 'invert(1) grayscale(1) brightness(0)';
   })
 };
 
