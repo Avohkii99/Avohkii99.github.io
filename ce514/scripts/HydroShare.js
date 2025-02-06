@@ -46,6 +46,8 @@ const layers = {
     format: 'image/png',
     transparent: true,
     attribution: 'Hydroshare GeoServer'
+  }).on('add', function() {
+    this.bringToFront();
   })
 };
 
