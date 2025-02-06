@@ -19,7 +19,7 @@ body {
   padding: 1em 0;
   border-right: 5px solid #555;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  width: 18%; /* Adjust the width as needed */
+  width: 15%; /* Adjust the width as needed */
   height: 100vh; /* Full height */
   position: fixed; /* Fixed position */
   top: 0;
@@ -51,12 +51,12 @@ h2 {
 
 
 .container {
-  width: 82%;
+  width: 85%;
   padding: 2em 1em;
   background-color: transparent;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-left: 18%; /* Offset to the left by 18% */
+  margin-left: 15%; /* Offset to the left by 18% */
 }
 
 .control-panel button {
