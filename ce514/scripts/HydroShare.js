@@ -5,30 +5,46 @@ const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-f6efb0188ee7472b8dda3a50af6cec56/wms', {
-  layers: 'HS-f6efb0188ee7472b8dda3a50af6cec56:Roads',
-  format: 'image/png',
-  transparent: true,
-  attribution: 'Hydroshare GeoServer'
-}).addTo(map).on('load', function() {
-  const layer = this.getContainer();
-  layer.style.filter = 'invert(1) grayscale(1) brightness(0)';
-});
+const layers = {
+  roads: L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-f6efb0188ee7472b8dda3a50af6cec56/wms', {
+    layers: 'HS-f6efb0188ee7472b8dda3a50af6cec56:Roads',
+    format: 'image/png',
+    transparent: true,
+    attribution: 'Hydroshare GeoServer'
+  }).on('load', function() {
+    const layer = this.getContainer();
+    layer.style.filter = 'invert(1) grayscale(1) brightness(0)';
+  }),
 
-L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-f6efb0188ee7472b8dda3a50af6cec56/wms', {
-  layers: 'HS-f6efb0188ee7472b8dda3a50af6cec56:YosemiteBound',
-  format: 'image/png',
-  transparent: true,
-  styles: 'line',
-  attribution: 'Hydroshare GeoServer'
-}).addTo(map).on('load', function() {
-  const layer = this.getContainer();
-  layer.style.filter = 'invert(1) grayscale(1) brightness(0)';
-});
+  yosemiteBound: L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-f6efb0188ee7472b8dda3a50af6cec56/wms', {
+    layers: 'HS-f6efb0188ee7472b8dda3a50af6cec56:YosemiteBound',
+    format: 'image/png',
+    transparent: true,
+    styles: 'line',
+    attribution: 'Hydroshare GeoServer'
+  }).on('load', function() {
+    const layer = this.getContainer();
+    layer.style.filter = 'invert(1) grayscale(1) brightness(0)';
+  }),
 
-L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-f6efb0188ee7472b8dda3a50af6cec56/wms', {
-  layers: 'HS-f6efb0188ee7472b8dda3a50af6cec56:Trails',
-  format: 'image/png',
-  transparent: true,
-  attribution: 'Hydroshare GeoServer'
-}).addTo(map);
+  trails: L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-f6efb0188ee7472b8dda3a50af6cec56/wms', {
+    layers: 'HS-f6efb0188ee7472b8dda3a50af6cec56:Trails',
+    format: 'image/png',
+    transparent: true,
+    attribution: 'Hydroshare GeoServer'
+  })
+};
+
+// Add the default layer to the map
+layers.roads.addTo(map);
+
+// Handle layer selection
+document.getElementById('layerSelect').addEventListener('change', function(e) {
+  const selectedLayer = e.target.value;
+
+  // Remove all layers
+  Object.values(layers).forEach(layer => map.removeLayer(layer));
+
+  // Add the selected layer
+  layers[selectedLayer].addTo(map);
+});
