@@ -34,6 +34,14 @@
 <div id="map" style="width: 90%; height: 60%; border-radius: 10px; margin: 0 auto;"></div>
 	<br>
 <div class="control-panel">
+    <div class="control-panel">
+        <label for="layerSelect">Select Layer:</label>
+        <select id="layerSelect" style="border-radius: 5px; padding: 5px;">
+            <option value="roads">Roads</option>
+            <option value="yosemiteBound">Yosemite Bound</option>
+            <option value="trails">Trails</option>
+        </select>
+    </div>
 	<h2>HydroShare is pretty finicky, but here is my attempt...</h2>
     <div class="code-container">
 		<code>
@@ -66,12 +74,6 @@
               }).addTo(map);
 		</code>
 	  </div>
-    <label for="layerSelect">Select Layer:</label>
-    <select id="layerSelect">
-      <option value="roads">Roads</option>
-      <option value="yosemiteBound">Yosemite Bound</option>
-      <option value="trails">Trails</option>
-    </select>
     </div>
 </div>
 
