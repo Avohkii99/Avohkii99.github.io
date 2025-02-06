@@ -17,9 +17,11 @@ L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-f6efb0188ee7472b8
   layers: 'HS-f6efb0188ee7472b8dda3a50af6cec56:YosemiteBound',
   format: 'image/png',
   transparent: true,
-  styles: 'line', // This style should be defined in the GeoServer to render the layer as an outline
   attribution: 'Hydroshare GeoServer'
-}).addTo(map);
+}).addTo(map).on('load', function() {
+  const layer = this.getContainer();
+  layer.style.filter = 'invert(1) grayscale(1) brightness(0)';
+});
 
 L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-f6efb0188ee7472b8dda3a50af6cec56/wms', {
   layers: 'HS-f6efb0188ee7472b8dda3a50af6cec56:Trails',
