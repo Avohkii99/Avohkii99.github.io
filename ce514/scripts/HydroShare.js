@@ -7,7 +7,7 @@ const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 const layers = {
   roads: L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-f6efb0188ee7472b8dda3a50af6cec56/wms', {
-    layers: 'HS-f6efb0188ee7472b8dda3a50af6cec56:Roads',
+    layers: 'HS-f6efb0188ee7472b8dda3a50af6cec56:Yosemite_N_Road_Areas',
     format: 'image/png',
     transparent: true,
     attribution: 'Hydroshare GeoServer'
@@ -35,14 +35,14 @@ const layers = {
   }),
 
   water: L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-f6efb0188ee7472b8dda3a50af6cec56/wms', {
-    layers: 'HS-f6efb0188ee7472b8dda3a50af6cec56:Water',
+    layers: 'HS-f6efb0188ee7472b8dda3a50af6cec56:Yosemite_National_Park_-_Features_Waterbodies_LiDAR_2019_-_Open_Data',
     format: 'image/png',
     transparent: true,
     attribution: 'Hydroshare GeoServer'
   }),
 
   POI: L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-f6efb0188ee7472b8dda3a50af6cec56/wms', {
-    layers: 'HS-f6efb0188ee7472b8dda3a50af6cec56:POI',
+    layers: 'HS-f6efb0188ee7472b8dda3a50af6cec56:Yosemite_Project',
     format: 'image/png',
     transparent: true,
     attribution: 'Hydroshare GeoServer'
