@@ -7,7 +7,7 @@ const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 const layers = {
   roads: L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-f6efb0188ee7472b8dda3a50af6cec56/wms', {
-    layers: 'HS-f6efb0188ee7472b8dda3a50af6cec56:Yosemite_N_Road_Areas',
+    layers: 'HS-f6efb0188ee7472b8dda3a50af6cec56:Yosemite_National_Park_-_Road_Areas_-_Open_Data',
     format: 'image/png',
     transparent: true,
     attribution: 'Hydroshare GeoServer'
