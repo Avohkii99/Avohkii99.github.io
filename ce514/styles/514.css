@@ -12,14 +12,21 @@ body {
   min-height: 100vh; /* Make the body fill the viewport height */
 }
 
-header {
+.sidebar {
   background-color: #333;
   color: #fff;
   text-align: center;
   padding: 1em 0;
-  border-bottom: 5px solid #555;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  min-height: 100vh; /* Extend header to full viewport height */
+  border-right: 5px solid #555;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  width: 18%; /* Adjust the width as needed */
+  height: 100vh; /* Full height */
+  position: fixed; /* Fixed position */
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align items to the top */
 }
 
 h1 {
@@ -44,11 +51,12 @@ h2 {
 
 
 .container {
-  width: 97.5%;
+  width: 82%;
   padding: 2em 1em;
   background-color: transparent;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-left: 18%; /* Offset to the left by 18% */
 }
 
 .control-panel button {
