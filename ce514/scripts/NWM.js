@@ -14,8 +14,9 @@ function getForecast(reachId) {
         .then(response => response.json())
         .then(data => {
             console.log(data); // Log the response data to see its structure
-            displayForecastTable(data);
-            drawForecastGraph(data);
+            const forecastData = data.shortRange.series.data;
+            displayForecastTable(forecastData);
+            drawForecastGraph(forecastData);
         })
         .catch(error => {
             console.error('Error fetching forecast data:', error);
@@ -31,14 +32,14 @@ function displayForecastTable(data) {
         const timeCell = row.insertCell(0);
         const flowCell = row.insertCell(1);
 
-        timeCell.textContent = forecast.time;
+        timeCell.textContent = forecast.validTime;
         flowCell.textContent = forecast.flow;
     });
 }
 
 function drawForecastGraph(data) {
     const ctx = document.getElementById('forecastGraph').getContext('2d');
-    const labels = data.map(forecast => forecast.time);
+    const labels = data.map(forecast => forecast.validTime);
     const flows = data.map(forecast => forecast.flow);
 
     new Chart(ctx, {
