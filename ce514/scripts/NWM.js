@@ -13,8 +13,7 @@ function getForecast(reachId) {
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-            console.log(data); // Log the response data to see its structure
-            const forecastData = data.shortRange.series.data;
+                        const forecastData = data.shortRange.series.data;
             displayForecastTable(forecastData);
             drawForecastGraph(forecastData);
         })
