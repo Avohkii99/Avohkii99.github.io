@@ -13,7 +13,8 @@ function getForecast(reachId) {
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-                        const forecastData = data.shortRange.series.data;
+            console.log(data); // Log the response data to see its structure
+            const forecastData = data.shortRange.series.data;
             displayForecastTable(forecastData);
             drawForecastGraph(forecastData);
         })
@@ -58,10 +59,18 @@ function drawForecastGraph(data) {
                     type: 'time',
                     time: {
                         unit: 'hour'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Time'
                     }
                 },
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Streamflow'
+                    }
                 }
             }
         }
