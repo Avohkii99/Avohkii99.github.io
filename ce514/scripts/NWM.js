@@ -54,6 +54,7 @@ function drawForecastGraph(data) {
             }]
         },
         options: {
+            responsive: true,
             scales: {
                 x: {
                     type: 'time',
@@ -66,11 +67,17 @@ function drawForecastGraph(data) {
                     }
                 },
                 y: {
-                    beginAtZero: true,
                     title: {
                         display: true,
                         text: 'Streamflow'
-                    }
+                    },
+                    ticks: {
+                        callback: function(value) {
+                            return value.toLocaleString(); // Format the y-axis labels
+                        }
+                    },
+                    suggestedMin: Math.min(...flows) - 5, // Adjust the minimum value
+                    suggestedMax: Math.max(...flows) + 5  // Adjust the maximum value
                 }
             }
         }
