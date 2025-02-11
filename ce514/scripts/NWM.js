@@ -1,3 +1,5 @@
+let chartInstance; // Declare a variable to store the chart instance
+
 document.getElementById('getForecastButton').addEventListener('click', function() {
     const reachId = document.getElementById('reachIdInput').value;
     if (reachId) {
@@ -42,7 +44,12 @@ function drawForecastGraph(data) {
     const labels = data.map(forecast => forecast.validTime);
     const flows = data.map(forecast => forecast.flow);
 
-    new Chart(ctx, {
+    // Destroy the existing chart instance if it exists
+    if (chartInstance) {
+        chartInstance.destroy();
+    }
+
+    chartInstance = new Chart(ctx, {
         type: 'line',
         data: {
             labels: labels,
@@ -76,8 +83,8 @@ function drawForecastGraph(data) {
                             return value.toLocaleString(); // Format the y-axis labels
                         }
                     },
-                    suggestedMin: Math.min(...flows) - 5, // Adjust the minimum value
-                    suggestedMax: Math.max(...flows) + 5  // Adjust the maximum value
+                    min: Math.floor((Math.min(...flows) - 5) / 5) * 5, // Set the minimum value rounded to the nearest 5
+                    max: Math.ceil((Math.max(...flows) + 5) / 5) * 5  // Set the maximum value rounded to the nearest 5
                 }
             }
         }
