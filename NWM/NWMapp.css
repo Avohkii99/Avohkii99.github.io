@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f0f0f0; 
-  background-image: url('../22379938_6550641.jpg'); /* Adjusted relative path */
+  background-image: url('/22379938_6550641.jpg');
   background-size: cover;
   background-repeat: no-repeat; /* Prevent background image from repeating */
   background-attachment: fixed; /* Make background image fixed */
@@ -171,7 +171,7 @@ nav a:hover {
 
 @font-face {
   font-family: 'brush';
-  src: url('../WaterBrush-Regular.ttf'); /* Adjusted path */
+  src: url('/WaterBrush-Regular.ttf'); /* Adjusted path */
   font-weight: normal;
   font-style: normal;
   font-display: swap;
