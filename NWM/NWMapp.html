@@ -5,19 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>US National Water Model Forecast</title>
     <link rel="stylesheet" href="NWMapp.css">
+    <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+	<script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
 </head>
 <body>
 
+<h1 class="header">Hydropower Forecaster</h1>
+
 <div class="sidebar">
-  <h1>NWM Power Planning</h1>
-  <h2>Jared Jewell</h2>
-  <h2>CE 514</h2>
-  <h2>2/4/25</h2>
+    <nav>
+        <img src="power.png" alt="Power Image" style="width:100%; height:auto; margin-bottom: 180%;">
+        <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="HIW.html">How It Works</a></li>
+            <li><a href="https://water.noaa.gov/about/nwm" target="_blank">NWM Home</a></li>
+        </ul>
+    </nav>
 </div>
 
 <div class="container">
+    <div id="map" style="width: 90%; height: 60%; border-radius: 10px; margin: 0 auto;"></div>
     <h2>About the National Water Model</h2>
     <p>The National Water Model (NWM) is a hydrologic model that simulates and forecasts water movement across the continental United States. It provides high-resolution forecasts of streamflow and other hydrologic variables, which are essential for water resource management, flood prediction, and environmental protection. The NWM leverages data from various sources, including weather forecasts, land surface models, and observations, to provide accurate and timely water forecasts.</p>
     <div id="learnMore">

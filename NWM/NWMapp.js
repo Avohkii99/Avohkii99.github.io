@@ -1,3 +1,10 @@
+const map = L.map('map').setView([37.85227792200095, -119.52604693651973], 9);
+
+const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 20,
+  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
 let chartInstance; // Declare a variable to store the chart instance
 
 document.getElementById('getForecastButton').addEventListener('click', function() {
@@ -90,3 +97,5 @@ function drawForecastGraph(data) {
         }
     });
 }
+
+
