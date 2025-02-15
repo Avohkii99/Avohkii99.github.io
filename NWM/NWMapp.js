@@ -98,4 +98,15 @@ function drawForecastGraph(data) {
     });
 }
 
+L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-3ee20294469c415fa514cd6ff08390af/wms', {
+    layers: 'HS-3ee20294469c415fa514cd6ff08390af:nhd_major_rivers_and_creeks',
+    format: 'image/png',
+    transparent: true,
+    attribution: 'Hydroshare GeoServer'
+}).addTo(map);
 
+const watermillsLayer = omnivore.kml('watermills.kml')
+    .on('ready', function() {
+        map.fitBounds(watermillsLayer.getBounds());
+    })
+    .addTo(map);
