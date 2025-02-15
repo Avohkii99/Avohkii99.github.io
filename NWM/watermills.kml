@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>Untitled project</name>
+	<gx:CascadingStyle kml:id="__managed_style_12092E6E07363AFCB035">
+		<Style>
+			<IconStyle>
+				<Icon>
+					<href>https://earth.google.com/earth/document/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+				<displayMode>hide</displayMode>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<gx:CascadingStyle kml:id="__managed_style_0951943C90363AFCB036">
+		<Style>
+			<IconStyle>
+				<scale>1.2</scale>
+				<Icon>
+					<href>https://earth.google.com/earth/document/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>6</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+				<displayMode>hide</displayMode>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<StyleMap id="__managed_style_024DB48FCA363AFCB035">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#__managed_style_12092E6E07363AFCB035</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#__managed_style_0951943C90363AFCB036</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Placemark id="098D5657CE363AFCB02B">
+		<name>948050175</name>
+		<styleUrl>#__managed_style_024DB48FCA363AFCB035</styleUrl>
+		<Point>
+			<extrude>1</extrude>
+			<coordinates>-121.868,37.3369,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0A1A0ECE63363AFE23ED">
+		<name>948050173</name>
+		<styleUrl>#__managed_style_024DB48FCA363AFCB035</styleUrl>
+		<Point>
+			<extrude>1</extrude>
+			<coordinates>-121.989,37.3311,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0E3593148E363AFF762A">
+		<name>17695691</name>
+		<styleUrl>#__managed_style_024DB48FCA363AFCB035</styleUrl>
+		<Point>
+			<extrude>1</extrude>
+			<coordinates>-121.965,37.2518,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0BB1E7BEF0363B01B0D2">
+		<name>17693041</name>
+		<styleUrl>#__managed_style_024DB48FCA363AFCB035</styleUrl>
+		<Point>
+			<extrude>1</extrude>
+			<coordinates>-122.027,37.3007,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0BA21FB012363B0336DE">
+		<name>17694639</name>
+		<styleUrl>#__managed_style_024DB48FCA363AFCB035</styleUrl>
+		<Point>
+			<extrude>1</extrude>
+			<coordinates>-121.793,37.1861,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="09D5D59AEA363B0411DF">
+		<name>17694229</name>
+		<styleUrl>#__managed_style_024DB48FCA363AFCB035</styleUrl>
+		<Point>
+			<extrude>1</extrude>
+			<coordinates>-121.808,37.2958,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="026474F296363B05A242">
+		<name>17694079</name>
+		<styleUrl>#__managed_style_024DB48FCA363AFCB035</styleUrl>
+		<Point>
+			<extrude>1</extrude>
+			<coordinates>-121.828,37.3952,0</coordinates>
+		</Point>
+	</Placemark>
+</Document>
+</kml>

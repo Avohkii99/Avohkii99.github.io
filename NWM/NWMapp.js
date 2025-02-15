@@ -1,4 +1,4 @@
-const map = L.map('map').setView([37.85227792200095, -119.52604693651973], 9);
+const map = L.map('map').setView([37.30342866145395, -121.88656206242344], 11);
 
 const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 20,
@@ -99,7 +99,7 @@ function drawForecastGraph(data) {
 }
 
 L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-3ee20294469c415fa514cd6ff08390af/wms', {
-    layers: 'HS-3ee20294469c415fa514cd6ff08390af:nhd_major_rivers_and_creeks',
+    layers: 'HS-3ee20294469c415fa514cd6ff08390af:NHD_Major_Rivers_and_Creeks',
     format: 'image/png',
     transparent: true,
     attribution: 'Hydroshare GeoServer'
@@ -107,6 +107,6 @@ L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-3ee20294469c415fa
 
 const watermillsLayer = omnivore.kml('watermills.kml')
     .on('ready', function() {
-        map.fitBounds(watermillsLayer.getBounds());
+        ;
     })
     .addTo(map);
