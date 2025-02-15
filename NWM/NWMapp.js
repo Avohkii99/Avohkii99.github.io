@@ -98,8 +98,12 @@ function drawForecastGraph(data) {
     });
 }
 
-L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-3ee20294469c415fa514cd6ff08390af/wms', {
-    layers: 'HS-3ee20294469c415fa514cd6ff08390af:NHD_Major_Rivers_and_Creeks',
+// Define the initial bounds
+const initialBounds = map.getBounds();
+
+// Add the NHD layer for the initial view with custom tile loading
+const nhdLayer = L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-f6efb0188ee7472b8dda3a50af6cec56/wms', {
+    layers: 'HS-f6efb0188ee7472b8dda3a50af6cec56:NHD_Major_Rivers_and_Creeks',
     format: 'image/png',
     transparent: true,
     attribution: 'Hydroshare GeoServer'
