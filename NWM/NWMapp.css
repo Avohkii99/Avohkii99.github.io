@@ -98,7 +98,7 @@ h1.header {
   top: 0;
   transform: translateX(64%); /* Center horizontally */
   z-index: 1; /* Ensure it stays above other content */
-  height: 8%;
+  height: 6%;
 }
 
 h2 {
@@ -122,7 +122,7 @@ h2 {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-left: 14%; /* Offset to the left by 15% */
-  margin-top: 11%; /* Add some space between containers */
+  margin-top: 9%; /* Add some space between containers */
 }
 
 .control-panel {
@@ -292,4 +292,51 @@ nav a:hover {
   background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
   border-radius: 10px;
   padding: 10px;
+}
+
+#forecastContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#forecastSummaryContainer, #forecastTableContainer {
+  flex: 1 1 45%; /* Adjust the width as needed */
+  margin: 10px;
+}
+
+#forecastSummaryContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+#totalPowerContainer, #forecastGraphContainer, #forecastTableContainer {
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#forecastGraphContainer {
+  margin-top: 20px;
+}
+
+#forecastTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#forecastTable th, #forecastTable td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+#forecastGraph {
+  width: 100%;
+  height: 400px; /* Adjust the height as needed */
+}
+
+#instructionContainer {
+  text-align: center;
 }
