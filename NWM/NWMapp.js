@@ -98,7 +98,10 @@ function displayForecastTable(data) {
 function drawForecastGraph(data) {
     const ctx = document.getElementById('forecastGraph').getContext('2d');
     const labels = data.map(forecast => forecast.validTime);
-    const flows = data.map(forecast => forecast.flow);
+    const powers = data.map(forecast => {
+        const flow = parseFloat(forecast.flow);
+        return 10 * flow * 448.8 * 0.18 * 0.5 / 1000; // Calculate power (kWh)
+    });
 
     // Destroy the existing chart instance if it exists
     if (chartInstance) {
@@ -110,8 +113,8 @@ function drawForecastGraph(data) {
         data: {
             labels: labels,
             datasets: [{
-                label: 'Flow (cfs)',
-                data: flows,
+                label: 'Power (kWh)',
+                data: powers,
                 borderColor: 'blue',
                 fill: false
             }]
@@ -132,15 +135,15 @@ function drawForecastGraph(data) {
                 y: {
                     title: {
                         display: true,
-                        text: 'Streamflow'
+                        text: 'Power (kWh)'
                     },
                     ticks: {
                         callback: function(value) {
                             return value.toLocaleString(); // Format the y-axis labels
                         }
                     },
-                    min: Math.floor((Math.min(...flows) - 5) / 5) * 5, // Set the minimum value rounded to the nearest 5
-                    max: Math.ceil((Math.max(...flows) + 5) / 5) * 5  // Set the maximum value rounded to the nearest 5
+                    min: Math.floor((Math.min(...powers) - 2) / 2) * 2, // Set the minimum value rounded to the nearest 5
+                    max: Math.ceil((Math.max(...powers) + 2) / 2) * 2  // Set the maximum value rounded to the nearest 5
                 }
             }
         }
