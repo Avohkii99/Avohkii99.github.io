@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>How It Works - NWMapp</title>
+    <link rel="stylesheet" href="NWMapp.css">
+</head>
+<body>
+
+<h1 class="header">How It Works</h1>
+
+<div class="sidebar">
+    <nav>
+        <img src="power.png" alt="Power Image" style="width:100%; height:auto; margin-bottom: 180%;">
+        <ul>
+            <li><a href="NWMapp.html">Home</a></li>
+            <li><a href="About.html">About</a></li>
+            <li><a href="https://water.noaa.gov/about/nwm" target="_blank">NWM Home</a></li>
+        </ul>
+    </nav>
+</div>
+
+<div class="container">
+    <h2>Introduction</h2>
+    <p>The Hydropower Forcaster application allows users to retrieve US National Water Model short-range forecasts for specific reach IDs. Users can click on a point from the KML layer on the map to fetch the forecast data for the specified reach ID, display the values in a table, and draw the forecast in a graph.</p>
+
+    <h2>How to Use the Application</h2>
+    <ol>
+        <li>Open the Hydropower Forcaster application.</li>
+        <li>Select the forecast type from the dropdown menu: Short Range, Medium Range, or Long Range (This feature is not yet available).</li>
+        <li>Click on a marker on the map to see the projected power generation for the selected reach ID.</li>
+        <li>The forecast data will be displayed in a table and a graph below the map.</li>
+        <li>The total power generation for the next 12 hours will be displayed in the summary section.</li>
+    </ol>
+
+    <h2>Key Features</h2>
+    <ul>
+        <li>Interactive map with markers representing different reach IDs.</li>
+        <li>Ability to select different forecast types: Short Range, Medium Range, Long Range (This feature is not yet available).</li>
+        <li>Display of forecast data in a table and a graph.</li>
+        <li>Summary of total power generation for the next 12 hours.</li>
+    </ul>
+
+    <h2>Code Behind the Page</h2>
+    <p>The NWMapp application is built using HTML, CSS, JavaScript, and various libraries such as Leaflet for the map and Chart.js for the graph. Below is a brief description of the main components of the code:</p>
+
+    <h3>Map Initialization</h3>
+    <pre><code class="language-javascript">
+const map = L.map('map').setView([37.30342866145395, -121.88656206242344], 10);
+
+const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 20,
+  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+    </code></pre>
+    <p>This code initializes the map and sets the view to a specific location with a given zoom level. It also adds the OpenStreetMap tiles to the map.</p>
+
+    <h3>Fetching Forecast Data</h3>
+    <pre><code class="language-javascript">
+function getForecast(reachId) {
+    const forecastType = document.getElementById('forecastType').value;
+    const forecastTypeMap = {
+        'short_range': 'shortRange',
+        'medium_range': 'mediumRange',
+        'long_range': 'longRange'
+    };
+    const apiUrl = `https://api.water.noaa.gov/nwps/v1/reaches/${reachId}/streamflow?series=${forecastType}`;
+
+    // Show the loading symbol
+    document.getElementById('loadingContainer').style.display = 'block';
+    document.getElementById('instructionText').textContent = 'Loading...';
+
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data); // Log the response data to see its structure
+
+            const mappedForecastType = forecastTypeMap[forecastType];
+            // Check if the series property exists
+            if (data[mappedForecastType] && data[mappedForecastType].series) {
+                const forecastData = data[mappedForecastType].series.data;
+                displayForecastTable(forecastData, forecastType);
+                drawForecastGraph(forecastData);
+                // Hide the loading symbol and update the instruction text
+                document.getElementById('loadingContainer').style.display = 'none';
+                document.getElementById('instructionText').textContent = 'The power generation forecast is displayed below.';
+            } else {
+                throw new Error(`No series data available for ${forecastType}`);
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching forecast data:', error);
+            // Hide the loading symbol and update the instruction text
+            document.getElementById('loadingContainer').style.display = 'none';
+            document.getElementById('instructionText').textContent = 'Error fetching forecast data. Please try again.';
+        });
+}
+    </code></pre>
+    <p>This function fetches the forecast data for a given reach ID and forecast type. It displays the data in a table and a graph.</p>
+
+    <h3>Displaying Forecast Data</h3>
+    <pre><code class="language-javascript">
+function displayForecastTable(data, forecastType) {
+    const tableBody = document.getElementById('forecastTable').getElementsByTagName('tbody')[0];
+    tableBody.innerHTML = ''; // Clear existing table rows
+
+    let totalPower = 0;
+    const currentTime = new Date();
+    let forecastDuration;
+
+    if (forecastType === 'short_range') {
+        forecastDuration = 12 * 60 * 60 * 1000; // 12 hours
+    } else if (forecastType === 'medium_range') {
+        forecastDuration = 3 * 24 * 60 * 60 * 1000; // 3 days
+    } else if (forecastType === 'long_range') {
+        forecastDuration = 10 * 24 * 60 * 60 * 1000; // 10 days
+    }
+
+    const forecastEndTime = new Date(currentTime.getTime() + forecastDuration);
+
+    let startTime = null;
+    let endTime = null;
+
+    data.forEach(forecast => {
+        const row = tableBody.insertRow();
+        const dateCell = row.insertCell(0);
+        const timeCell = row.insertCell(1);
+        const powerCell = row.insertCell(2);
+
+        // Format the date and time
+        const date = new Date(forecast.validTime);
+        const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' };
+        const timeOptions = { hour: 'numeric', minute: 'numeric', hour12: true };
+        const formattedDate = date.toLocaleDateString('en-US', dateOptions);
+        const formattedTime = date.toLocaleTimeString('en-US', timeOptions);
+
+        // Calculate power (kWh)
+        const flow = parseFloat(forecast.flow);
+        const power = 10 * flow * 448.8 * 0.18 * 0.5 / 1000;
+
+        // Sum the power for the forecast duration, omitting values before the current time
+        if (date > currentTime && date <= forecastEndTime) {
+            totalPower += power;
+
+            // Set the start time if it's not set
+            if (!startTime) {
+                startTime = date;
+            }
+
+            // Update the end time
+            endTime = date;
+        }
+
+        dateCell.textContent = formattedDate;
+        timeCell.textContent = formattedTime;
+        powerCell.textContent = power.toFixed(2); // Round the power to 2 decimal places
+    });
+
+    // Display the total power in the text box
+    document.getElementById('totalPower').value = `${totalPower.toFixed(2)} kWh`;
+
+    // Display the start time and end time
+    if (startTime && endTime) {
+        const startOptions = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true };
+        const endOptions = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true };
+        const adjustedEndTime = new Date(endTime.getTime() + 60 * 60 * 1000); // Add one hour to the end time
+        document.getElementById('startTime').textContent = `Start Time: ${startTime.toLocaleString('en-US', startOptions)}`;
+        document.getElementById('endTime').textContent = `End Time: ${adjustedEndTime.toLocaleString('en-US', endOptions)}`;
+    } else {
+        document.getElementById('startTime').textContent = 'Start Time: N/A';
+        document.getElementById('endTime').textContent = 'End Time: N/A';
+    }
+}
+    </code></pre>
+    <p>This function displays the forecast data in a table and calculates the total power generation for the forecast duration.</p>
+
+    <h3>Drawing the Forecast Graph</h3>
+    <pre><code class="language-javascript">
+function drawForecastGraph(data) {
+    const ctx = document.getElementById('forecastGraph').getContext('2d');
+    const labels = data.map(forecast => forecast.validTime);
+    const powers = data.map(forecast => {
+        const flow = parseFloat(forecast.flow);
+        return 10 * flow * 448.8 * 0.18 * 0.5 / 1000; // Calculate power (kWh)
+    });
+
+    // Destroy the existing chart instance if it exists
+    if (forecastChartInstance) {
+        forecastChartInstance.destroy();
+    }
+
+    forecastChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Power (kWh)',
+                data: powers,
+                borderColor: 'blue',
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'hour'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Time'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Power (kWh)'
+                    },
+                    ticks: {
+                        callback: function(value) {
+                            return value.toLocaleString(); // Format the y-axis labels
+                        }
+                    },
+                    min: Math.floor((Math.min(...powers) - 2) / 2) * 2, // Set the minimum value rounded to the nearest 5
+                    max: Math.ceil((Math.max(...powers) + 2) / 2) * 2  // Set the maximum value rounded to the nearest 5
+                }
+            }
+        }
+    });
+}
+    </code></pre>
+    <p>This function draws the forecast graph using the Chart.js library. It plots the power generation over time.</p>
+
+    <h2>Debugging Codes and Their Meanings</h2>
+    <ul>
+        <li><strong>Error fetching forecast data:</strong> This error occurs when there is an issue with fetching the forecast data from the server. Check the network connection and the API URL.</li>
+        <li><strong>No series data available for [forecastType]:</strong> This error occurs when the forecast data for the selected forecast type is not available. Ensure that the forecast type is correct and that the data is available on the server.</li>
+        <li><strong>Failed to fetch data for reach ID [reachId]:</strong> This error occurs when there is an issue with fetching data for a specific reach ID. Check the reach ID and the API URL.</li>
+    </ul>
+</div>
+
+</body>
+</html>

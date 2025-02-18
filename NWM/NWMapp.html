@@ -20,7 +20,7 @@
     <nav>
         <img src="power.png" alt="Power Image" style="width:100%; height:auto; margin-bottom: 180%;">
         <ul>
-            <li><a href="about.html">About</a></li>
+            <li><a href="About.html">About</a></li>
             <li><a href="HIW.html">How It Works</a></li>
             <li><a href="https://water.noaa.gov/about/nwm" target="_blank">NWM Home</a></li>
         </ul>
@@ -33,8 +33,7 @@
     <div id="instructionContainer">
         <h2 id="instructionText">Click a marker on the map above to see the projected power generation beneath.</h2>
     </div>
-    <div id="loadingContainer" style="display: none; text-align: center;">
-    </div>
+    <div id="loadingContainer" style="display: none; text-align: center;">    </div>
     <div id="forecastContainer" class="flex-container">
         <div id="forecastSummaryContainer">
             <div id="totalPowerContainer">
@@ -68,9 +67,14 @@
         </div>
     </div>
     <br>
-    <div id="howItWorks">
-        <h2>How does it work?</h2>
-        <p>This page allows users to retrieve US National Water Model short-range forecasts for a specific reach ID. Users can click on a point from the KML layer to fetch the forecast data for the specified reach ID, display the values in a table, and draw the forecast in a graph using a custom script.</p>
+    <div class="control-panel">
+        <label for="forecastType">Select Forecast Type:</label>
+        <select id="forecastType" style="border-radius: 5px; padding: 5px;">
+            <option value="short_range">Short Range</option>
+            <option value="medium_range">Medium Range</option>
+            <option value="long_range">Long Range</option>
+        </select>
+        <p>Note: Currently, only short range data is available for these locations. However, as more extended forecasts become available, this functionality will prove useful.</p>
     </div>
 </div>
 

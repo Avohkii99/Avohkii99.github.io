@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About NWMapp</title>
+    <link rel="stylesheet" href="NWMapp.css">
+</head>
+<body>
+
+<h1 class="header">Hydropower Forcaster</h1>
+
+<div class="sidebar">
+    <nav>
+        <img src="power.png" alt="Power Image" style="width:100%; height:auto; margin-bottom: 180%;">
+        <ul>
+            <li><a href="NWMapp.html">Home</a></li>
+            <li><a href="HIW.html">How It Works</a></li>
+            <li><a href="https://water.noaa.gov/about/nwm" target="_blank">NWM Home</a></li>
+        </ul>
+    </nav>
+</div>
+
+<div class="container">
+    <h2>About Hydropower Forcaster</h2>
+    <p>Hydropower Forcaster is a web application designed to provide users with access to US National Water Model (NWM) forecasting tools. The application allows users to retrieve short-range, medium-range, and long-range forecasts for specific reach IDs by clicking on points from a KML layer on the map. For the purposes of this website, these points represent theoretical hydropower stations that the user has placed around San Jose, California. The application displays expected levels of power generation for each of the individual points in both table and graph formats, providing a comprehensive view of the projected power generation.</p>
+
+    <h3>Key Components</h3>
+    <ul>
+        <li><strong>Map:</strong> The map is built using the Leaflet library, which provides an interactive map interface. The map displays the NHD Major Rivers and Creeks layer from the Hydroshare GeoServer and a KML layer with clickable points representing different reach IDs.</li>
+        <li><strong>Data Retrieval:</strong> When a user clicks on a point on the map, the application retrieves the forecast data for the selected reach ID from the NOAA Water API. The data includes short-range, medium-range, and long-range forecasts, which are displayed in a table and a graph.</li>
+        <li><strong>Data Display:</strong> The forecast data is displayed in a table and a graph using the Chart.js library. The table shows the date, time, and power (kWh) for each forecast entry, while the graph provides a visual representation of the power generation over time.</li>
+        <li><strong>Forecast Type Selection:</strong> Users can select the type of forecast (short-range, medium-range, or long-range) using a dropdown menu at the bottom of the page. A note next to the dropdown menu informs users that currently, only short-range data is available for these locations, but the functionality will be useful as more extended forecasts become available.</li>
+    </ul>
+
+    <h3>Technologies Used</h3>
+    <ul>
+        <li><strong>HTML:</strong> The structure of the web pages is built using HTML.</li>
+        <li><strong>CSS:</strong> The styling of the web pages is done using CSS, including custom styles for the map, table, graph, and other elements.</li>
+        <li><strong>JavaScript:</strong> The functionality of the web application is implemented using JavaScript, including data retrieval, data display, and user interactions.</li>
+        <li><strong>Leaflet:</strong> The interactive map is created using the Leaflet library.</li>
+        <li><strong>Chart.js:</strong> The graph displaying the forecast data is created using the Chart.js library.</li>
+        <li><strong>NOAA Water API:</strong> The forecast data is retrieved from the NOAA Water API.</li>
+    </ul>
+</div>
+
+</body>
+</html>
