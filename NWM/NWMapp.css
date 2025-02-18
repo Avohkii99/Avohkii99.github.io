@@ -347,6 +347,19 @@ nav a:hover {
   text-align: center;
 }
 
+footer {
+  background-color: transparent;
+  color: #777; /* A darker gray for better contrast against white */
+  text-align: center;
+  padding: 0.5em 0;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  z-index: -1;
+  font-weight: normal;
+  font-size: 0.9em;
+}
+
 @media (max-width: 768px) {
   .sidebar {
     width: 15%; /* Adjust the width for smaller screens */
