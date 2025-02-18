@@ -48,7 +48,7 @@ body {
   text-decoration: none;
   color: #fff; /* White text color */
   display: block;
-  width: 80%; /* Dynamically scale the width */
+  width: 89%; /* Dynamically scale the width */
   font-size: calc(0.5em + 0.5vw); /* Dynamically scale the font size */
 }
 
