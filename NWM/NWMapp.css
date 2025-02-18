@@ -32,29 +32,44 @@ body {
 }
 
 .sidebar nav ul {
-  list-style: none;
+  list-style-type: none;
   padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  position: absolute;
+  bottom: 7%;
+  width: 100%;
 }
 
 .sidebar nav ul li {
-  margin: 0.01em 0; /* Reduce the margin between list items */
-  width: 100%; /* Ensure each list item takes full width */
+  text-align: center;
+  padding: 0px 0;
+}
+
+.sidebar nav ul li a {
+  text-decoration: none;
+  color: #fff; /* White text color */
+  display: block;
+  width: 80%; /* Dynamically scale the width */
+  font-size: calc(0.5em + 0.5vw); /* Dynamically scale the font size */
+}
+
+.sidebar nav ul li.active a {
+  background-color: #ddd;
+  color: black; /* Black text color for active button */
+  pointer-events: none;
 }
 
 .sidebar nav a {
   text-decoration: none;
-  color: #fff;
-  padding: 0.75em 1.5em;
+  color: #fff; /* White text color */
+  padding: 0.7em 1.5em;
   border-radius: 5px;
   transition: all 0.3s ease;
   background-color: #555; /* Dark gray background */
-  width: 80%; /* Ensure consistent width for all buttons */
+  width: calc(80% - 1vw); /* Dynamically scale the width */
   text-align: center;
   display: block; /* Make the anchor tag a block element */
+  font-family: 'orbitron', serif;
+  font-size: calc(0.9em + 0.8vw); /* Dynamically scale the font size */
 }
 
 .sidebar nav a:hover {
@@ -86,7 +101,7 @@ h1 {
 h1.header {
   margin: 0;
   margin-top: 1.25%;
-  font-size: 2.3rem;
+  font-size: 1.9em; /* Scale down faster */
   font-family: 'orbitron', serif;
   background-color: #333; /* Match the button background color */
   color: #fff; /* White text color */
@@ -261,15 +276,6 @@ nav a:hover {
   height:200px;
 }
 
-.snowflake {
-  color: #fff;
-  font-size: 1em;
-  font-family: Arial, sans-serif;
-  text-shadow: 0 0 5px #000;
-}
- 
-.snowflake,.snowflake .inner{animation-iteration-count:infinite;animation-play-state:running}@keyframes snowflakes-fall{0%{transform:translateY(0)}100%{transform:translateY(110vh)}}@keyframes snowflakes-shake{0%,100%{transform:translateX(0)}50%{transform:translateX(80px)}}.snowflake{position:fixed;top:-10%;z-index:9999;-webkit-user-select:none;user-select:none;cursor:default;pointer-events:none;animation-name:snowflakes-shake;animation-duration:3s;animation-timing-function:ease-in-out}.snowflake .inner{animation-duration:10s;animation-name:snowflakes-fall;animation-timing-function:linear}.snowflake:nth-of-type(0){left:1%;animation-delay:0s}.snowflake:nth-of-type(0) .inner{animation-delay:0s}.snowflake:first-of-type{left:10%;animation-delay:1s}.snowflake:first-of-type .inner,.snowflake:nth-of-type(8) .inner{animation-delay:1s}.snowflake:nth-of-type(2){left:20%;animation-delay:.5s}.snowflake:nth-of-type(2) .inner,.snowflake:nth-of-type(6) .inner{animation-delay:6s}.snowflake:nth-of-type(3){left:30%;animation-delay:2s}.snowflake:nth-of-type(11) .inner,.snowflake:nth-of-type(3) .inner{animation-delay:4s}.snowflake:nth-of-type(4){left:40%;animation-delay:2s}.snowflake:nth-of-type(10) .inner,.snowflake:nth-of-type(4) .inner{animation-delay:2s}.snowflake:nth-of-type(5){left:50%;animation-delay:3s}.snowflake:nth-of-type(5) .inner{animation-delay:8s}.snowflake:nth-of-type(6){left:60%;animation-delay:2s}.snowflake:nth-of-type(7){left:70%;animation-delay:1s}.snowflake:nth-of-type(7) .inner{animation-delay:2.5s}.snowflake:nth-of-type(8){left:80%;animation-delay:0s}.snowflake:nth-of-type(9){left:90%;animation-delay:1.5s}.snowflake:nth-of-type(9) .inner{animation-delay:3s}.snowflake:nth-of-type(10){left:25%;animation-delay:0s}.snowflake:nth-of-type(11){left:65%;animation-delay:2.5s}
-
 #forecastTableContainer, #forecastGraphContainer {
   background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
   border-radius: 10px;
@@ -339,4 +345,39 @@ nav a:hover {
 
 #instructionContainer {
   text-align: center;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 15%; /* Adjust the width for smaller screens */
+  }
+
+  .container {
+    width: 75%;
+    margin-left: 17%; /* Adjust the margin for smaller screens */
+  }
+
+  h1.header {
+    width: 60%; /* Adjust the width for smaller screens */
+    transform: translateX(15%); /* Center horizontally */
+    font-size: calc(1.5em + 0.2vw); /* Scale down faster */
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 20%; /* Adjust the width for smaller screens */
+  }
+
+  .container {
+    width: 70%;
+    margin-left: 22%; /* Adjust the margin for smaller screens */
+  }
+
+  h1.header {
+    width: 60%; /* Adjust the width for smaller screens */
+    transform: translateX(10%); /* Center horizontally */
+    font-size: calc(1em + 0.5vw); /* Scale down faster */
+  }
+
 }
