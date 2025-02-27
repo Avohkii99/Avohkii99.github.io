@@ -33,6 +33,7 @@
         <li><strong>Data Retrieval:</strong> When a user clicks on a point on the map, the application retrieves the forecast data for the selected reach ID from the NOAA Water API. The data includes short-range, medium-range, and long-range forecasts, which are displayed in a table and a graph.</li>
         <li><strong>Data Display:</strong> The forecast data is displayed in a table and a graph using the Chart.js library. The table shows the date, time, and power (kWh) for each forecast entry, while the graph provides a visual representation of the power generation over time.</li>
         <li><strong>Forecast Type Selection:</strong> Users can select the type of forecast (short-range, medium-range, or long-range) using a dropdown menu at the bottom of the page. A note next to the dropdown menu informs users that currently, only short-range data is available for these locations, but the functionality will be useful as more extended forecasts become available.</li>
+        <li><strong>Threshold Checker:</strong>This helps users determine if a station needs to be shut off by comparing the hourly power generation against predefined safety limits. If any hourly power value exceeds the upper threshold or falls below the lower threshold, a warning is displayed, indicating a risk to the motor. This ensures that users can quickly identify when a station must be shut down to prevent damage and maintain safe operation.</li>
     </ul>
 
     <h3>Technologies Used</h3>
