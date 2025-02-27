@@ -7,6 +7,16 @@ const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 let forecastChartInstance; // Declare a variable to store the forecast chart instance
 
+const powerThresholds = {
+    "948050175": { lower: 20, upper: 50 },
+    "948050173": { lower: 5, upper: 25 },
+    "17695691": { lower: 5, upper: 25 },
+    "17693041": { lower: 0.25, upper: 10 },
+    "17694639": { lower: 0.25, upper: 10 },
+    "17694229": { lower: 0.25, upper: 10 },
+    "17694079": { lower: 0.25, upper: 10 }
+};
+
 function getForecast(reachId) {
     const forecastType = document.getElementById('forecastType').value;
     const forecastTypeMap = {
@@ -31,6 +41,7 @@ function getForecast(reachId) {
                 const forecastData = data[mappedForecastType].series.data;
                 displayForecastTable(forecastData, forecastType);
                 drawForecastGraph(forecastData);
+                updateThresholdDisplay(reachId);
                 // Hide the loading symbol and update the instruction text
                 document.getElementById('loadingContainer').style.display = 'none';
                 document.getElementById('instructionText').textContent = 'The power generation forecast is displayed below.';
@@ -104,6 +115,8 @@ function displayForecastTable(data, forecastType) {
 
     // Display the total power in the text box
     document.getElementById('totalPower').value = `${totalPower.toFixed(2)} kWh`;
+
+    updateThresholdDisplay(window.currentReachId);
 
     // Display the start time and end time
     if (startTime && endTime) {
@@ -190,6 +203,7 @@ const watermillsLayer = omnivore.kml('watermills.kml')
         this.eachLayer(function(layer) {
             const reachId = layer.feature.properties.name; // Assuming the reach ID is stored in the 'name' property
             layer.on('click', function(e) {
+                window.currentReachId = reachId;
                 getForecast(reachId);
             });
         });
@@ -199,3 +213,43 @@ const watermillsLayer = omnivore.kml('watermills.kml')
 document.addEventListener('DOMContentLoaded', function() {
     // No need to call updateTotalNetworkData here since it's already called in the 'ready' event handler
 });
+
+function updateThresholdDisplay(reachId) {
+    const thresholds = powerThresholds[reachId];
+
+    if (!thresholds) {
+        document.getElementById('displayLowerThreshold').textContent = "N/A";
+        document.getElementById('displayUpperThreshold').textContent = "N/A";
+        document.getElementById('thresholdMessage').textContent = "No thresholds set for this point.";
+        document.getElementById('thresholdMessage').style.color = "black";
+        return;
+    }
+
+    // Display thresholds
+    document.getElementById('displayLowerThreshold').textContent = thresholds.lower;
+    document.getElementById('displayUpperThreshold').textContent = thresholds.upper;
+
+    // Get all hourly power values from the forecast table
+    const tableRows = document.querySelectorAll("#forecastTable tbody tr");
+    let powerValues = [];
+
+    tableRows.forEach(row => {
+        const powerValue = parseFloat(row.cells[2].textContent);
+        powerValues.push(powerValue);
+    });
+
+    // Check if any hourly power value is out of bounds
+    const belowThreshold = powerValues.some(power => power < thresholds.lower);
+    const aboveThreshold = powerValues.some(power => power > thresholds.upper);
+
+    if (belowThreshold) {
+        document.getElementById('thresholdMessage').textContent = `Warning: Some hourly power values are BELOW the lower threshold (${thresholds.lower} kWh).`;
+        document.getElementById('thresholdMessage').style.color = "red";
+    } else if (aboveThreshold) {
+        document.getElementById('thresholdMessage').textContent = `Warning: Some hourly power values are ABOVE the upper threshold (${thresholds.upper} kWh).`;
+        document.getElementById('thresholdMessage').style.color = "red";
+    } else {
+        document.getElementById('thresholdMessage').textContent = "All hourly power values are within safe thresholds.";
+        document.getElementById('thresholdMessage').style.color = "green";
+    }
+}

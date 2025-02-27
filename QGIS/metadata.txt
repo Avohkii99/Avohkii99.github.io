@@ -1,0 +1,7 @@
+[general]
+name=Hello QGIS
+version=1.0
+description=A simple "Hello QGIS" plugin.
+author=Avohkii
+qgisMinimumVersion=3.0
+icon=power.png
